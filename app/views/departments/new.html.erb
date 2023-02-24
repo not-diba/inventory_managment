@@ -1,0 +1,12 @@
+<h1>Add Department</h1>
+
+<%= form_with model: @department do |f| %>
+    <div>
+        <%= f.label :department_name %>
+        <br>
+        <%= f.text_field :department_name %>
+    </div>
+    <div>
+        <%= f.submit %>
+    </div>
+<% end %>
