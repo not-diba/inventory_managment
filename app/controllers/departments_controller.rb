@@ -16,10 +16,10 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
       # TODO: flash message here
-      render action: 'new'
+      render action: 'new', status: :unprocessable_entity
     end
   end
 
@@ -30,21 +30,23 @@ class DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
 
-    if @department.update_attributes(department_params)
-      redirect_to action: 'show', id: @department
+    if @department.update(department_params)
+      redirect_to @department
     else
-      render action: 'edit'
+      render action: 'edit', status: :unprocessable_entity
     end
   end
 
-  def delete
-    Department.find(params[:id]).destroy
-    redirect_to action: 'list'
+  def destroy
+    @department = Department.find(params[:id])
+    @department.destroy
+
+    redirect_to departments_path, status: :see_other
   end
 
   private
 
   def department_params
-    params.require(:departments).permit(:department_name)
+    params.require(:department).permit(:department_name)
   end
 end

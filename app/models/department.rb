@@ -3,6 +3,7 @@
 class Department < ApplicationRecord
   has_many :labs
   has_many :rooms
+  has_many :administrators
 
   validates :department_name, presence: true
 end

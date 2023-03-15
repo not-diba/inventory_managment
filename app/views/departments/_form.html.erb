@@ -1,0 +1,13 @@
+<%= form_with model: department do |f| %>
+    <div>
+        <%= f.label :department_name %>
+        <br>
+        <%= f.text_field :department_name %>
+        <% department.errors.full_messages_for(:department_name).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div>
+        <%= f.submit %>
+    </div>
+<% end %>

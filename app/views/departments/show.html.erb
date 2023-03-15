@@ -1,1 +1,22 @@
 <h1><%= @department.department_name %></h1>
+
+<ul>
+  <%= link_to "Edit", edit_department_path(@department) %>
+  <%= link_to "Delete", department_path(@department), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+
+</ul>
+
+<h2><strong>Labs</strong></h2>
+<%= render @department.labs %>
+
+<h2> Add a Laboratory </h2>
+<%= render 'labs/form' %>
+
+<h2><strong>Rooms</strong></h2>
+<%= render @department.rooms %>
+
+<h2> Add a Room </h2>
+<%= render 'rooms/form' %>
