@@ -1,0 +1,9 @@
+<%= form_with model: [@department, @department.rooms.build ] do |f| %>
+  <p>
+    <%= f.label :room_name %><br>
+    <%= f.text_field :room_name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
