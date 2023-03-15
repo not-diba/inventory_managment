@@ -3,7 +3,10 @@
 class RoomsController < ApplicationController
   def index; end
 
-  def show; end
+  def show
+    @department = Department.find(params[:department_id])
+    @room = @department.rooms.find(params[:id])
+  end
 
   def new; end
 
