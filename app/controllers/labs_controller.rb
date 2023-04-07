@@ -4,8 +4,7 @@ class LabsController < ApplicationController
   def index; end
 
   def show
-    @department = Department.find(params[:department_id])
-    @lab = @department.labs.find(params[:id])
+    @lab = Lab.find(params[:id])
   end
 
   def new; end

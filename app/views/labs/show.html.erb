@@ -1,1 +1,7 @@
 <h1><%= @lab.lab_name %></h1>
+
+<h2>Equipment</h2>
+<%= render @lab.equipment %>
+
+<h3>Add Equipment</h3>
+<%= render 'equipment/form' %>
