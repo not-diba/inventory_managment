@@ -10,22 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_133432) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_08_092010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.bigint "department_id"
+    t.string "name"
+    t.string "email"
+    t.string "role"
+    t.string "department_id"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_administrators_on_department_id"
-    t.index ["email"], name: "index_administrators_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
   create_table "departments", force: :cascade do |t|
@@ -42,11 +38,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_133432) do
     t.string "status"
     t.text "remarks"
     t.bigint "lab_id", null: false
-    t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lab_id"], name: "index_equipment_on_lab_id"
-    t.index ["room_id"], name: "index_equipment_on_room_id"
   end
 
   create_table "labs", force: :cascade do |t|
@@ -57,25 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_133432) do
     t.index ["department_id"], name: "index_labs_on_department_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "role_name"
-    t.bigint "administrator_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_roles_on_administrator_id"
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.string "room_name"
-    t.bigint "department_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_rooms_on_department_id"
-  end
-
   add_foreign_key "equipment", "labs"
-  add_foreign_key "equipment", "rooms"
   add_foreign_key "labs", "departments"
-  add_foreign_key "roles", "administrators"
-  add_foreign_key "rooms", "departments"
 end
