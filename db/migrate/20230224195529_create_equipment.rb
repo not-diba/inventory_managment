@@ -8,7 +8,6 @@ class CreateEquipment < ActiveRecord::Migration[7.0]
       t.string :status
       t.text :remarks
       t.references :lab, null: false, foreign_key: true
-      t.references :room, null: false, foreign_key: true
 
       t.timestamps
     end
