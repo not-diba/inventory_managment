@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EquipmentController < ApplicationController
+  before_action :authorize
+
   def index; end
 
   def show
@@ -11,7 +13,6 @@ class EquipmentController < ApplicationController
 
   def create
     @lab = Lab.find(params[:lab_id])
-    params[:equipment].merge!({ room_id: @lab.id })
     @equipment = @lab.equipment.create(equipment_params)
     redirect_to lab_path(@lab)
   end
@@ -25,7 +26,6 @@ class EquipmentController < ApplicationController
   private
 
   def equipment_params
-    params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks,
-                                      :room_id)
+    params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks)
   end
 end

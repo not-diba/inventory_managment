@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :administrators
   root 'departments#index'
 
+  get 'signup', to: 'administrators#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
   resources :departments, shallow: true do
-    resources :labs, :rooms, shallow: true do
+    resources :labs, shallow: true do
       resources :equipment
     end
-    resources :administrators do
-      resources :roles
-    end
   end
+
+  resources :administrators
+  resources :sessions
 end

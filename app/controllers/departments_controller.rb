@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DepartmentsController < ApplicationController
+  before_action :authorize
+
   def index
     @departments = Department.all
   end
