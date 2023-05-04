@@ -1,0 +1,60 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Equipment details</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+    <%= form_with model: @equipment, :html=> {:class => 'form-horizontal form-label-left'} do |f| %>
+      <div class="item form-group">
+        <%= f.label :equipment_name, "Equipment Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :equipment_name, class: 'form-control rounded' , placeholder: 'Equipment Name' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :make, "Make" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :make, class: 'form-control rounded' , placeholder: 'Make' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :serial_number, "Serial Number" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :serial_number, class: 'form-control rounded' , placeholder: 'Serial Number' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :model_number, "Model Number" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :model_number, class: 'form-control rounded' , placeholder: 'Model Number' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :status, "Status" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :status, class: 'form-control rounded' , placeholder: 'Status' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :remarks, "Remarks" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :remarks, class: 'form-control rounded' , placeholder: 'Remarks' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+          <%= link_to 'Cancel' , :back, class: 'btn btn-warning rounded-pill' %>
+          <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
