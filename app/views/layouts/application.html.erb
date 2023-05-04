@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InventoryManagment</title>
+    <title>Inventory Managment</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_include_tag 'https://kit.fontawesome.com/fae26408c7.js' %>
+    
+    <%= stylesheet_link_tag 'bootstrap.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'jquery.mCustomScrollbar.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'nprogress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'animate.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
     <%= javascript_importmap_tags %>
+
+    <!-- Custom Theme Style -->
+    <%= stylesheet_link_tag 'custom.min', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div>
-      <% if current_administrator %>
-        <%= current_administrator.name %> |
-        <%= link_to "Log Out", logout_path %>
-      <% else %>
-        <%= link_to "Sign Up", signup_path %> |
-        <%= link_to "Log In", login_path %>
-      <% end %>
-    </div>
+  <% unless current_administrator %>
     <%= yield %>
+  <% end %>
+
+  <% if current_administrator %>
+    <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-book"></i> <span>Inventory Management</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- sidebar menu -->
+              <%= render partial: 'layouts/navigation/sidebar_menu' %>
+            <!-- /sidebar menu -->
+
+        <!-- top navigation -->
+            <%= render partial: 'layouts/navigation/top_navbar' %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <%= yield %>
+          </div>
+        </div>
+        <!-- /page content -->
+      </div>
+    </div>
+    <!-- footer content -->
+            <%= render partial: 'layouts/navigation/footer' %>
+        <!-- /footer content -->
+
+    <!-- jQuery -->
+    <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track': 'reload' %>
+    <!-- Bootstrap -->
+    <%= javascript_include_tag 'bootstrap.bundle.min', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Custom Theme Scripts -->
+    <%= javascript_include_tag 'custom.min', 'data-turbolinks-track': 'reload' %>
   </body>
+  <% end %>
 </html>
