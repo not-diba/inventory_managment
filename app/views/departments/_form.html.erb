@@ -1,13 +1,39 @@
-<%= form_with model: department do |f| %>
-    <div>
-        <%= f.label :department_name %>
-        <br>
-        <%= f.text_field :department_name %>
-        <% department.errors.full_messages_for(:department_name).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
-    <div>
-        <%= f.submit %>
-    </div>
-<% end %>
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Department details</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+    <%= form_with model: @department, :html=> {:class => 'form-horizontal form-label-left'} do |f| %>
+      <div class="item form-group">
+        <%= f.label :department_name, "Department Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :department_name, class: 'form-control rounded' , placeholder: 'Department Name' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :location, "Make" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :location, class: 'form-control rounded' , placeholder: 'Location' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :description, "Description" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :description, class: 'form-control rounded' , placeholder: 'Description' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+          <%= link_to 'Cancel' , departments_table_index_path, class: 'btn btn-warning rounded-pill' %>
+          <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

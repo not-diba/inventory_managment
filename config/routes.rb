@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  get 'labs', to: 'labs#index', as: 'labs_index'
+  get 'equipment', to: 'equipment#index', as: 'equipment_index'
+  resources :departments_table
+  resources :show_labs
+
   resources :departments, shallow: true do
     resources :labs, shallow: true do
       resources :equipment

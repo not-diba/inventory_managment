@@ -1,3 +1,14 @@
-  <p>
-    <li><%= link_to equipment.equipment_name, equipment %></li>
-  </p>
+<tbody>
+    <tr>
+      <th scope="row"><%= equipment.id %></th>
+      <td><%= equipment.equipment_name %></td>
+      <td><%= equipment.make %></td>
+      <td><%= equipment.serial_number %></td>
+      <td><%= equipment.model_number %></td>
+      <td><%= equipment.status %></td>
+      <td><%= equipment.remarks %></td>
+      <td><%= 'equipment.room' %></td>
+      <td><%= equipment.created_at %></td>
+      <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe,equipment %></td>
+    </tr>
+  </tbody>

@@ -1,0 +1,29 @@
+<%= form_for @administrator do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.collection_select :role, Roles.all, include_blank: true %>
+    <%= f.text_field :role %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br />
+    <%= f.collection_select :department_id, Department.order(:department_name),:id,:department_name, include_blank: true %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions"><%= f.submit "Sign Up" %></div>
+  <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill' %>
+<% end %>

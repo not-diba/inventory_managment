@@ -1,7 +1,42 @@
 <h1><%= @lab.lab_name %></h1>
+<div class="x_panel">
+  <div class="x_title">
+    <h2></i> <%= @lab.lab_name + ' Equipment'%> </h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">All Department Equipment</a>
+                          </div>
+                      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
 
-<h2>Equipment</h2>
-<%= render @lab.equipment %>
+  <% if @lab.equipment.length == 0 %>
+      <p>No Equipment Present</p>
+    <% else %>
+      <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Equipment Name</th>
+      <th scope="col">Make</th>
+      <th scope="col">Serial Number</th>
+      <th scope="col">Model Number</th>
+      <th scope="col">Status</th>
+      <th scope="col">Remarks</th>
+      <th scope="col">Room Location</th>
+      <th scope="col">Date Added</th>
+      <th scope="col">View</th>
+    </tr>
+  </thead>
+    <%= render @lab.equipment %>
+</table>
+    <% end %>
 
-<h3>Add Equipment</h3>
-<%= render 'equipment/form' %>
+  <hr/>
+    <h2 class='pl-2'> Add a Equipment </h2>
+    <%= render 'equipment/form' %>
+  </div>

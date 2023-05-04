@@ -1,16 +1,30 @@
 <h1><%= @department.department_name %></h1>
 
-<ul>
-  <%= link_to "Edit", edit_department_path(@department) %>
-  <%= link_to "Delete", department_path(@department), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
+<div class="x_panel">
+  <div class="x_title">
+    <h2></i> <%= @department.department_name + ' Laboratories'%> </h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">List Laboratories</a>
+                            <a class="dropdown-item" href="#">Add Room</a>
+                          </div>
+                      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    
+    <% if @department.labs.length == 0 %>
+      <p>No Laboratories Present</p>
+    <% else %>
+      <%= render @department.labs %>
+    <% end %>
+    
+  <hr/>
+    <h2 class='pl-2'> Add a Laboratory </h2>
+  <%= render 'labs/form' %>
+  </div>
 
-</ul>
-
-<h2><strong>Labs</strong></h2>
-<%= render @department.labs %>
-
-<h2> Add a Laboratory </h2>
-<%= render 'labs/form' %>
+  

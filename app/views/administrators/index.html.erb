@@ -1,0 +1,96 @@
+<h1>Administrators</h1>
+<div class="x_panel">
+  <div class="x_title">
+    <h2> Administrators</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for administrator ..."
+          title="Type in a administrator name" class="form-control form-control-sm rounded border-info"></li>
+          <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+
+    <% if @administrators.length==0 %>
+      <p>No Administrators Present</p>
+      <% else %>
+        <table class="table table-sm" id="myTable">
+          <caption>List of all Administrators</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">
+                <%= link_to 'Name <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'name' %>
+              </th>
+              <th scope="col">
+                <%= link_to 'Email <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'email' %>
+              </th>
+              <th scope="col">
+                <%= link_to 'Role <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'role' %>
+              </th>
+              <th scope="col">
+                Department
+              </th>
+              <th scope="col">
+                <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
+              </th>
+              <th scope="col" class="text-center">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @administrators.each do |administrator| %>
+              <tr>
+                <th scope="row">
+                  <%= administrator.id %>
+                </th>
+                <td>
+                  <%= administrator.name %>
+                </td>
+                <td>
+                  <%= administrator.email %>
+                </td>
+                <td>
+                  role
+                </td>
+                <td>
+                  <%= Department.find(administrator.department_id).department_name %>
+                </td>
+                <td>
+                  <%= administrator.created_at.strftime("%Y-%m-%d") %>
+                </td>
+                <td class="text-center">
+                  <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, administrator_path(administrator),class: 'mr-3 text-info' %>|
+                  <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
+                    edit_administrator_path(administrator), class: 'mr-3 ml-3 text-warning' %>|
+                    <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                      administrator_path(administrator), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: 'ml-3 text-danger' %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+        <% end %>
+
+          <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+          </script>

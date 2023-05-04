@@ -1,29 +1,27 @@
 <%= form_with model: [@lab, @lab.equipment.build ] do |f| %>
-  <p>
-    <%= f.label :equipment_name %><br>
-    <%= f.text_field :equipment_name %>
-  </p>
-  <p>
-    <%= f.label :make %><br>
-    <%= f.text_field :make %>
-  </p>
-  <p>
-    <%= f.label :serial_number %><br>
-    <%= f.text_field :serial_number %>
-  </p>
-  <p>
-    <%= f.label :model_number %><br>
-    <%= f.text_field :model_number %>
-  </p>
-  <p>
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-  </p>
-  <p>
-    <%= f.label :remarks %><br>
-    <%= f.text_field :remarks %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :equipment_name, class: 'form-control rounded border-primary', placeholder: 'Equipment Name', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :make, class: 'form-control rounded border-primary', placeholder: 'Make', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :serial_number, class: 'form-control rounded border-primary', placeholder: 'Serial Number', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :model_number, class: 'form-control rounded border-primary', placeholder: 'Model Number', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :status, class: 'form-control rounded border-primary', placeholder: 'Status', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks', :required => true %>
+    </div>
+    <div class="col-auto">
+      <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
+      <%= link_to 'Back', department_path(@lab.department_id), class: 'btn btn-warning rounded-pill' %>
+    </div>
+  </div>
 <% end %>
+

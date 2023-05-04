@@ -1,0 +1,42 @@
+<div class="x_panel mt-5">
+  <div class="x_title">
+    <h2><%= @administrator.name %></h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Administrator Name</th>
+                <td><%= @administrator.name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Administrator Email</th>
+                <td><%= @administrator.email %></td>
+            </tr>
+             <tr>
+                <th scope="row">Administrator Department</th>
+                <td><%= Department.find(@administrator.department_id).department_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Role</th>
+                <td><%= @administrator.role %></td>
+            </tr>
+            <tr>
+                <th scope="row">Created At</th>
+                <td><%= @administrator.created_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+    <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill float-right' %>
+    <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
+                      administrator_path(@administrator.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: 'btn btn-danger rounded-pill float-left' %>
+    <%= link_to '<i class="fa fa-pencil-square-o"></i> Edit' .html_safe,
+                    edit_administrator_path(@administrator.id), class: 'btn btn-info rounded-pill float-left' %>
+</div>
