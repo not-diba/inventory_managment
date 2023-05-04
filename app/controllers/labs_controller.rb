@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LabsController < ApplicationController
+  before_action :authenticate
   before_action :authorize
 
   def index

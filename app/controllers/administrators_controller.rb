@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class AdministratorsController < ApplicationController
-  # before_action :authorize
+  before_action :authenticate
+  before_action :authorize
 
   def index
     @administrators = Administrator.all
@@ -13,6 +14,15 @@ class AdministratorsController < ApplicationController
 
   def new
     @administrator = Administrator.new
+  end
+
+  def create
+    @administrator = Administrator.new(administrator_params)
+    if @administrator.save
+      redirect_to administrators_path, notice: 'Thank you for signing up!'
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -33,16 +43,6 @@ class AdministratorsController < ApplicationController
     end
   end
 
-  def create
-    @administrator = Administrator.new(administrator_params)
-    if @administrator.save
-      session[:user_id] = @administrator.id
-      redirect_to administrators_path, notice: 'Thank you for signing up!'
-    else
-      render 'new'
-    end
-  end
-
   def destroy
     @administrator = Administrator.find(params[:id])
     @administrator.destroy
@@ -55,7 +55,6 @@ class AdministratorsController < ApplicationController
   private
 
   def administrator_params
-    # TODO: change department_id to name using a drop down menu
-    params.require(:administrator).permit(:name, :email, :role, :department_id, :password, :password_confirmation)
+    params.require(:administrator).permit(:name, :email, :role_id, :department_id, :password, :password_confirmation)
   end
 end

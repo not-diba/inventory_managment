@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DepartmentsController < ApplicationController
+  before_action :authenticate
   before_action :authorize
 
   def index
