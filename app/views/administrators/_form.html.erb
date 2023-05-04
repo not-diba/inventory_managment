@@ -1,29 +1,44 @@
-<%= form_for @administrator do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Role details</h2>
+    <div class="clearfix"></div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+  <div class="x_content">
+    <br />
+    <%= form_with model: @administrator, :html=> {:class => 'form-horizontal form-label-left'} do |f| %>
+      <div class="item form-group">
+        <%= f.label :name, "Administartor Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :name, class: 'form-control rounded' , placeholder: 'Administrator Name' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :email, "Email" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.email_field :email, class: 'form-control rounded' , placeholder: 'Email' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :role_id, "Role*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.collection_select :role_id, Role.order(:role_name),:id,:role_name, { include_blank: "Select Role" }, { class: "form-control rounded" } %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :department_id, "Department*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.collection_select :department_id, Department.order(:department_name),:id,:department_name,{ include_blank: "Select Department" }, { class: "form-control rounded" } %>
+          </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+          <%= link_to 'Cancel' , administrators_path, class: 'btn btn-warning rounded-pill' %>
+          <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        </div>
+      </div>
+      <% end %>
   </div>
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role, Roles.all, include_blank: true %>
-    <%= f.text_field :role %>
-  </div>
-  <div class="field">
-    <%= f.label :department %><br />
-    <%= f.collection_select :department_id, Department.order(:department_name),:id,:department_name, include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
-  <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill' %>
-<% end %>
+</div>

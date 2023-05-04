@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th scope="row">Role</th>
-                <td><%= @administrator.role %></td>
+                <td><%= Role.find(@administrator.role_id).role_name %></td>
             </tr>
             <tr>
                 <th scope="row">Created At</th>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
     <div class="clearfix"></div>
-    <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill float-right' %>
+    <%= link_to 'Back', administrators_path, class: 'btn btn-warning rounded-pill float-right' %>
     <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
                       administrator_path(@administrator.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                       class: 'btn btn-danger rounded-pill float-left' %>
