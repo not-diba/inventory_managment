@@ -1,9 +1,12 @@
+
 <%= form_with model: [@department, @department.labs.build ] do |f| %>
-  <p>
-    <%= f.label :lab_name %><br>
-    <%= f.text_field :lab_name %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="row">
+    <div class="col-auto mr-auto">
+      <%= f.text_field :lab_name, class: 'form-control rounded border-primary', placeholder: 'Laboratory Name', :required => true %>
+    </div>
+    <div class="col-auto">
+      <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
+      <%= link_to 'Back', departments_path, class: 'btn btn-warning rounded-pill' %>
+    </div>
+  </div>
 <% end %>
