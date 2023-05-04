@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  delegate :allow?, to: :current_permission
+  helper_method :allow?
+
   private
 
   def current_administrator
@@ -8,7 +11,18 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_administrator
 
+  def authenticate
+    redirect_to login_url, alert: 'Not authenticated' if current_administrator.nil?
+  end
+
+  def current_permission
+    @current_permission ||= Permission.new(current_administrator)
+  end
+
   def authorize
-    redirect_to login_url, alert: 'Not authorized' if current_administrator.nil?
+    return if current_permission.allow?(params[:controller], params[:action])
+
+    redirect_to root_path
+    puts('Not Authorized')
   end
 end
