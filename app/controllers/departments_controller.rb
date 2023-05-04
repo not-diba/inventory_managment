@@ -43,12 +43,14 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @department.destroy
 
-    redirect_to departments_path, status: :see_other
+    respond_to do |format|
+      format.js { render inline: 'location.reload();' }
+    end
   end
 
   private
 
   def department_params
-    params.require(:department).permit(:department_name)
+    params.require(:department).permit(:department_name, :location, :description)
   end
 end

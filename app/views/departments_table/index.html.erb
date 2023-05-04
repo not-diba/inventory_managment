@@ -1,0 +1,94 @@
+<h1>Departments</h1>
+<div class="x_panel">
+  <div class="x_title">
+    <ul class="nav navbar">
+      <li><div class= "d-flex flex-row">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for department ..."
+            title="Type in a department name" class="form-control form-control-sm rounded border-info">
+            <i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i>
+          </div>
+      </li>
+      <%= link_to '<i class="fa fa-plus pull-right"></i> New Department' .html_safe, new_department_path %>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+
+    <% if @departments.length==0 %>
+      <p>No Departments Present</p>
+      <% else %>
+        <table class="table table-sm" id="myTable">
+          <caption>List of all Departments</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">
+                <%= link_to 'Department <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'department_name' %>
+              </th>
+              <th scope="col">
+                Location 
+              </th>
+              <th scope="col">
+                Laboratories Count
+              </th>
+              <th scope="col">
+                <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
+              </th>
+              <th scope="col" class="text-center">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @departments.each do |department| %>
+              <tr>
+                <th scope="row">
+                  <%= department.id %>
+                </th>
+                <td>
+                  <%= department.department_name %>
+                </td>
+                <td>
+                  <%= department.location %>
+                </td>
+                <td>
+                  <%= department.labs.count %>
+                </td>
+                <td>
+                  <%= department.created_at.strftime("%Y-%m-%d") %>
+                </td>
+                <td class="text-center">
+                  <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, departments_table_path(department),class: 'mr-3 text-info' %>|
+                  <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
+                    edit_department_path(department), class: 'mr-3 ml-3 text-warning' %>|
+                    <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                      department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: 'ml-3 text-danger' %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+        <% end %>
+    </div>
+
+          <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+          </script>
