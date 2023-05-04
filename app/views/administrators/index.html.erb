@@ -1,7 +1,7 @@
 <h1>Administrators</h1>
 <div class="x_panel">
   <div class="x_title">
-    <h2> Administrators</h2>
+    <h2>Details</h2>
     <ul class="nav navbar-right panel_toolbox">
       <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for administrator ..."
           title="Type in a administrator name" class="form-control form-control-sm rounded border-info"></li>
@@ -52,7 +52,7 @@
                   <%= administrator.email %>
                 </td>
                 <td>
-                  role
+                  <%= Role.find(administrator.role_id).role_name %>
                 </td>
                 <td>
                   <%= Department.find(administrator.department_id).department_name %>
@@ -61,7 +61,9 @@
                   <%= administrator.created_at.strftime("%Y-%m-%d") %>
                 </td>
                 <td class="text-center">
+                <% if allow? "administrators", "show" %>
                   <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, administrator_path(administrator),class: 'mr-3 text-info' %>|
+                <% end %>
                   <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
                     edit_administrator_path(administrator), class: 'mr-3 ml-3 text-warning' %>|
                     <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,

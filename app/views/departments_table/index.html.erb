@@ -1,14 +1,11 @@
 <h1>Departments</h1>
 <div class="x_panel">
   <div class="x_title">
-    <ul class="nav navbar">
-      <li><div class= "d-flex flex-row">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for department ..."
-            title="Type in a department name" class="form-control form-control-sm rounded border-info">
-            <i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i>
-          </div>
-      </li>
-      <%= link_to '<i class="fa fa-plus pull-right"></i> New Department' .html_safe, new_department_path %>
+  <h2>Details</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for department ..."
+          title="Type in a department name" class="form-control form-control-sm rounded border-info"></li>
+          <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
     </ul>
     <div class="clearfix"></div>
   </div>

@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :administrators
+  resources :roles
   resources :sessions
 end
