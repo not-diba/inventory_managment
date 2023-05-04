@@ -3,7 +3,12 @@
 class LabsController < ApplicationController
   before_action :authorize
 
-  def index; end
+  def index
+    @labs = Lab.all
+    return unless params[:sort]
+
+    @labs = Lab.order(params[:sort])
+  end
 
   def show
     @lab = Lab.find(params[:id])
@@ -17,11 +22,28 @@ class LabsController < ApplicationController
     redirect_to department_path(@department)
   end
 
-  def edit; end
+  def edit
+    @lab = Lab.find(params[:id])
+  end
 
-  def update; end
+  def update
+    @lab = Lab.find(params[:id])
 
-  def delete; end
+    if @lab.update(labs_params)
+      redirect_to show_lab_path(@lab)
+    else
+      render action: 'edit', status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @lab = Lab.find(params[:id])
+    @lab.destroy
+
+    respond_to do |format|
+      format.js { render inline: 'location.reload();' }
+    end
+  end
 
   private
 
