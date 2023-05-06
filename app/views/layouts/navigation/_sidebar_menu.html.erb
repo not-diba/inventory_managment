@@ -38,49 +38,41 @@
       </li>
     </ul>
   </div>
-  <div class="menu_section">
-    <h3>Management</h3>
-    <ul class="nav side-menu">
-      <li><a><i class="fa fa-user"></i> Administrators <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li>
-            <%= link_to "Administrators" , administrators_path %>
-          </li>
-          <li>
-            <%= link_to "Roles" , roles_path %>
-          </li>
-          <li><a>Add<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li>
-                <%= link_to "New Administrator" , signup_path %>
-              </li>
-              <li>
-                <%= link_to "New Role" , new_role_path %>
-              </li>
+  <% if current_administrator.role_id == 3 %>
+    <div class="menu_section">
+      <h3>Management</h3>
+      <ul class="nav side-menu">
+        <li><a><i class="fa fa-user"></i> Administrators <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li>
+              <%= link_to "Administrators" , administrators_path %>
+            </li>
+            <li>
+              <%= link_to "Roles" , roles_path %>
+            </li>
+            <li><a>Add<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li>
+                  <%= link_to "New Administrator" , signup_path %>
+                </li>
+                <li>
+                  <%= link_to "New Role" , new_role_path %>
+                </li>
 
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  <% end %>
 
 </div>
 
 <!-- /menu footer buttons -->
 <div class="sidebar-footer hidden-small">
-  <a data-toggle="tooltip" data-placement="top" title="Settings">
-    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-  </a>
-  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-  </a>
-  <a data-toggle="tooltip" data-placement="top" title="Lock">
-    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-  </a>
-
   <%= link_to '<span class="glyphicon glyphicon-off" aria-hidden="true"></span>' .html_safe, logout_path, data: {
-    toggle: 'tooltip' , placement: 'top' } %>
+    toggle: 'tooltip' , placement: 'top' }, class: 'float-right' %>
 </div>
 <!-- /menu footer buttons -->
 </div>

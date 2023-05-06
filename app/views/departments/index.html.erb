@@ -36,33 +36,43 @@
   <div class="x_title">
     <h2></i> Departments </h2>
     <ul class="nav navbar-right panel_toolbox">
+    <% if current_administrator.role_id == 3 %>
       <%= link_to '<i class="fa fa-plus pull-right"></i> New Department' .html_safe, new_department_path %>
+    <% end%>
     </ul>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
     <div class="row">
       <% @departments.each do |department| %>
-        <div class="col-sm-6 mt-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">
-                <%= department.department_name %>
-              </h5>
-              <p class="card-text">
-                <%= department.created_at %>
-              </p>
-              <%= link_to "Open" , department, class: 'btn btn-info' %>
-                <ul class="nav navbar-right panel_toolbox pt-3" style="font-size:13px;">
-                  <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                    edit_department_path(department), class: 'mr-3' %>|
-                    <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                      department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: 'ml-3' %>
-                </ul>
+            <div class="col-sm-6 mt-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= department.department_name %>
+                  </h5>
+                  <p class="card-text">
+                    <%= department.location %>
+                  </p>
+                  <p class="card-text">
+                    <%= department.created_at.strftime("%Y-%m-%d") %>
+                  </p>
+                  <% if department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+                    <%= link_to "Open" , department, class: 'btn btn-info' %>
+                      <ul class="nav navbar-right panel_toolbox pt-3" style="font-size:13px;">
+                        <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
+                          edit_department_path(department), class: 'mr-3' %>|
+                          <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                            department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                            class: 'ml-3' %>
+                    </ul>
+                    <% else %>
+                      <br>
+                      <br>
+                    <% end %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
         <% end %>
     </div>
   </div>
