@@ -19,8 +19,12 @@ class ApplicationController < ActionController::Base
     @current_permission ||= Permission.new(current_administrator)
   end
 
+  def current_resource
+    nil
+  end
+
   def authorize
-    return if current_permission.allow?(params[:controller], params[:action])
+    return if current_permission.allow?(params[:controller], params[:action], current_resource)
 
     redirect_to root_path
     puts('Not Authorized')
