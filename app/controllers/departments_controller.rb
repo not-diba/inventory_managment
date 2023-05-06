@@ -29,7 +29,7 @@ class DepartmentsController < ApplicationController
 
   def update
     if @department.update(department_params)
-      redirect_to @department
+      redirect_to departments_table_index_path
     else
       render action: 'edit', status: :unprocessable_entity
     end
@@ -50,7 +50,7 @@ class DepartmentsController < ApplicationController
   end
 
   def department_params
-    params.require(:department).permit(:department_name, :location, :description)
+    params.require(:department).permit(:department_name, :location, :description, :administrator_id)
   end
 
   def current_resource
