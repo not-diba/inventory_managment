@@ -3,6 +3,7 @@
 class EquipmentController < ApplicationController
   before_action :authenticate
   before_action :authorize
+  before_action :find_equipment, only: %i[edit show update destroy]
 
   def index
     @equipment = Equipment.all
@@ -11,9 +12,7 @@ class EquipmentController < ApplicationController
     @equipment = Equipment.order(params[:sort])
   end
 
-  def show
-    @equipment = current_resource
-  end
+  def show; end
 
   def new; end
 
@@ -23,13 +22,9 @@ class EquipmentController < ApplicationController
     redirect_to lab_path(@lab)
   end
 
-  def edit
-    @equipment = current_resource
-  end
+  def edit; end
 
   def update
-    @equipment = current_resource
-
     if @equipment.update(equipment_params)
       redirect_to @equipment
     else
@@ -38,7 +33,6 @@ class EquipmentController < ApplicationController
   end
 
   def delete
-    @equipment = current_resource
     @equipment.destroy
 
     respond_to do |format|
@@ -47,6 +41,10 @@ class EquipmentController < ApplicationController
   end
 
   private
+
+  def find_equipment
+    @equipment = current_resource
+  end
 
   def equipment_params
     params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks)
