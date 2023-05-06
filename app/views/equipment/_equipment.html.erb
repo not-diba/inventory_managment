@@ -7,7 +7,7 @@
       <td><%= equipment.model_number %></td>
       <td><%= equipment.status %></td>
       <td><%= equipment.remarks %></td>
-      <td><%= 'equipment.room' %></td>
+      <td><%= Room.find(equipment.room_id).room_name %></td>
       <td><%= equipment.created_at %></td>
       <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe,equipment %></td>
     </tr>

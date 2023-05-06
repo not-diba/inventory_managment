@@ -3,6 +3,7 @@
 class LabsController < ApplicationController
   before_action :authenticate
   before_action :authorize
+  before_action :find_lab, only: %i[edit show update destroy]
 
   def index
     @labs = Lab.all
@@ -11,9 +12,7 @@ class LabsController < ApplicationController
     @labs = Lab.order(params[:sort])
   end
 
-  def show
-    @lab = current_resource
-  end
+  def show; end
 
   def new; end
 
@@ -23,13 +22,9 @@ class LabsController < ApplicationController
     redirect_to department_path(@department)
   end
 
-  def edit
-    @lab = current_resource
-  end
+  def edit; end
 
   def update
-    @lab = current_resource
-
     if @lab.update(labs_params)
       redirect_to show_lab_path(@lab)
     else
@@ -38,7 +33,6 @@ class LabsController < ApplicationController
   end
 
   def destroy
-    @lab = current_resource
     @lab.destroy
 
     respond_to do |format|
@@ -47,6 +41,10 @@ class LabsController < ApplicationController
   end
 
   private
+
+  def find_lab
+    @lab = current_resource
+  end
 
   def labs_params
     params.require(:lab).permit(:lab_name)

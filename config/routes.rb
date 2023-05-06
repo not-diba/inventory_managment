@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :administrators
   resources :roles
   resources :sessions
+  resources :rooms
 end

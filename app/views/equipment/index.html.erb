@@ -41,6 +41,9 @@
                 Laboratory
               </th>
               <th scope="col">
+                Room
+              </th>
+              <th scope="col">
                 <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
               </th>
               <th scope="col" class="text-center">
@@ -75,6 +78,9 @@
                     </td>
                     <td>
                       <%= Lab.find(equipment.lab_id).lab_name %>
+                    </td>
+                    <td>
+                      <%= Room.find(equipment.room_id).room_name %>
                     </td>
                     <td>
                       <%= equipment.created_at.strftime("%Y-%m-%d") %>
