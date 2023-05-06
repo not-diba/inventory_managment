@@ -1,0 +1,37 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Room details</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+    <%= form_with model: @room, :html=> {:class => 'form-horizontal form-label-left'} do |f| %>
+      <div class="item form-group">
+        <%= f.label :room_name, "Room Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :room_name, class: 'form-control rounded' , placeholder: 'Room Name' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :department_id, "Department Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <% if current_administrator.role_id == 3 %>
+              <%= f.collection_select :department_id, Department.order(:department_name),:id,:department_name, { include_blank: "Select Department" }, { class: "form-control rounded" } %>
+            <% elsif current_administrator.role_id == 4 %>
+              <%= f.hidden_field :department_id, class: 'form-control rounded' , placeholder: 'Department Name' ,
+              :required=> true, value: current_administrator.department_id %>
+              <input type="department_name" class="form-control rounded" readonly="readonly" placeholder= <%= Department.find(current_administrator.department_id).department_name%>>
+            <% end %>
+          </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+          <%= link_to 'Cancel' , rooms_path, class: 'btn btn-warning rounded-pill' %>
+          <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="x_panel mt-5">
+  <div class="x_title">
+    <h2><%= @room.room_name %></h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Room Name</th>
+                <td><%= @room.room_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Department Name</th>
+                <td><%= Department.find(@room.department_id).department_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Equipment Count</th>
+                <td><%= Equipment.where(room_id: @room.id).all.count %></td>
+            </tr>
+            <tr>
+                <th scope="row">Created At</th>
+                <td><%= @room.created_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+    <%= link_to 'Back', rooms_path, class: 'btn btn-warning rounded-pill float-right' %>
+    <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
+                      room_path(@room.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: 'btn btn-danger rounded-pill float-left' %>
+    <%= link_to '<i class="fa fa-pencil-square-o"></i> Edit' .html_safe,
+                    edit_room_path(@room.id), class: 'btn btn-info rounded-pill float-left' %>
+</div>
