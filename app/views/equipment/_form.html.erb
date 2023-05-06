@@ -18,6 +18,9 @@
     <div class="col">
       <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks', :required => true %>
     </div>
+    <div class="col">
+      <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
+    </div>
     <div class="col-auto">
       <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
       <%= link_to 'Back', department_path(@lab.department_id), class: 'btn btn-warning rounded-pill' %>

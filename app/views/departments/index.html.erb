@@ -67,8 +67,8 @@
                             class: 'ml-3' %>
                     </ul>
                     <% else %>
-                      <br>
-                      <br>
+                        <h6>Administrator:</h6> 
+                        <%= Administrator.find(department.administrator_id).name %>
                     <% end %>
                 </div>
               </div>
