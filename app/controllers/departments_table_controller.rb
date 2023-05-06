@@ -6,9 +6,18 @@ class DepartmentsTableController < ApplicationController
 
   def index
     @departments = Department.all
+    return unless params[:sort]
+
+    @departments = Department.order(params[:sort])
   end
 
   def show
-    @department = Department.find(params[:id])
+    @department = current_resource
+  end
+
+  private
+
+  def current_resource
+    @current_resource ||= Department.find(params[:id]) if params[:id]
   end
 end

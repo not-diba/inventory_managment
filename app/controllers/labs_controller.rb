@@ -12,7 +12,7 @@ class LabsController < ApplicationController
   end
 
   def show
-    @lab = Lab.find(params[:id])
+    @lab = current_resource
   end
 
   def new; end
@@ -24,11 +24,11 @@ class LabsController < ApplicationController
   end
 
   def edit
-    @lab = Lab.find(params[:id])
+    @lab = current_resource
   end
 
   def update
-    @lab = Lab.find(params[:id])
+    @lab = current_resource
 
     if @lab.update(labs_params)
       redirect_to show_lab_path(@lab)
@@ -38,7 +38,7 @@ class LabsController < ApplicationController
   end
 
   def destroy
-    @lab = Lab.find(params[:id])
+    @lab = current_resource
     @lab.destroy
 
     respond_to do |format|
@@ -50,5 +50,9 @@ class LabsController < ApplicationController
 
   def labs_params
     params.require(:lab).permit(:lab_name)
+  end
+
+  def current_resource
+    @current_resource ||= Lab.find(params[:id]) if params[:id]
   end
 end
