@@ -7,6 +7,7 @@ class Permission
     allow :labs, %i[index]
     allow :equipment, %i[index]
     allow :departments_table, %i[index]
+    allow :rooms, %i[index new create]
 
     if administrator && administrator.role_id == 3 # admin
       allow_all
@@ -18,6 +19,10 @@ class Permission
 
       allow :labs, %i[show new create edit update] do |lab|
         lab.department_id.to_s == administrator.department_id.to_s
+      end
+
+      allow :rooms, %i[show edit update] do |room|
+        room.department_id.to_s == administrator.department_id.to_s
       end
 
       allow :equipment, %i[new create update edit show destroy] do |equipment|
