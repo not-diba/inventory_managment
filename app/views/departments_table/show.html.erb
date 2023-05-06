@@ -11,6 +11,10 @@
                 <td><%= @department.department_name %></td>
             </tr>
             <tr>
+                <th scope="row">Administartor Name</th>
+                <td><%= Administrator.find(@department.administrator_id).name %></td>
+            </tr>
+            <tr>
                 <th scope="row">Location</th>
                 <td><%= @department.location %></td>
             </tr>
