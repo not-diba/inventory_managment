@@ -45,7 +45,7 @@
         </tbody>
     </table>
     <div class="clearfix"></div>
-    <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill float-right' %>
+    <%= link_to 'Back', equipment_index_path, class: 'btn btn-warning rounded-pill float-right' %>
     <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
                       equipment_path(@equipment.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                       class: 'btn btn-danger rounded-pill float-left' %>

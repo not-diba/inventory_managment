@@ -15,7 +15,7 @@
                 <td><%= @administrator.email %></td>
             </tr>
              <tr>
-                <th scope="row">Administrator Department</th>
+                <th scope="row">Department</th>
                 <td><%= Department.find(@administrator.department_id).department_name %></td>
             </tr>
             <tr>
@@ -34,9 +34,11 @@
     </table>
     <div class="clearfix"></div>
     <%= link_to 'Back', administrators_path, class: 'btn btn-warning rounded-pill float-right' %>
-    <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
-                      administrator_path(@administrator.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: 'btn btn-danger rounded-pill float-left' %>
+    <% if current_administrator.role_id == 3 %>
+        <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
+                        administrator_path(@administrator.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                        class: 'btn btn-danger rounded-pill float-left' %>
+    <% end %>
     <%= link_to '<i class="fa fa-pencil-square-o"></i> Edit' .html_safe,
                     edit_administrator_path(@administrator.id), class: 'btn btn-info rounded-pill float-left' %>
 </div>

@@ -50,43 +50,45 @@
           </thead>
           <tbody>
             <% @equipment.each do |equipment| %>
-              <tr>
-                <th scope="row">
-                  <%= equipment.id %>
-                </th>
-                <td>
-                  <%= equipment.equipment_name %>
-                </td>
-                <td>
-                  <%= equipment.make %>
-                </td>
-                <td>
-                  <%= equipment.serial_number %>
-                </td>
-                <td>
-                  <%= equipment.model_number %>
-                </td>
-                <td>
-                  <%= equipment.status %>
-                </td>
-                <td>
-                  <%= equipment.remarks %>
-                </td>
-                <td>
-                  <%= Lab.find(equipment.lab_id).lab_name %>
-                </td>
-                <td>
-                  <%= equipment.created_at.strftime("%Y-%m-%d") %>
-                </td>
-                <td class="text-center">
-                  <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, equipment_path(equipment),class: 'mr-3 text-info' %>|
-                  <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                    edit_equipment_path(equipment), class: 'mr-3 ml-3 text-warning' %>|
-                    <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                      equipment_path(equipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: 'ml-3 text-danger' %>
-                </td>
-              </tr>
+              <% if equipment.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+                  <tr>
+                    <th scope="row">
+                      <%= equipment.id %>
+                    </th>
+                    <td>
+                      <%= equipment.equipment_name %>
+                    </td>
+                    <td>
+                      <%= equipment.make %>
+                    </td>
+                    <td>
+                      <%= equipment.serial_number %>
+                    </td>
+                    <td>
+                      <%= equipment.model_number %>
+                    </td>
+                    <td>
+                      <%= equipment.status %>
+                    </td>
+                    <td>
+                      <%= equipment.remarks %>
+                    </td>
+                    <td>
+                      <%= Lab.find(equipment.lab_id).lab_name %>
+                    </td>
+                    <td>
+                      <%= equipment.created_at.strftime("%Y-%m-%d") %>
+                    </td>
+                    <td class="text-center">
+                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, equipment_path(equipment),class: 'mr-3 text-info' %>|
+                      <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
+                        edit_equipment_path(equipment), class: 'mr-3 ml-3 text-warning' %>|
+                        <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                          equipment_path(equipment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                          class: 'ml-3 text-danger' %>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
           </tbody>
         </table>

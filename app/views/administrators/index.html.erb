@@ -61,9 +61,7 @@
                   <%= administrator.created_at.strftime("%Y-%m-%d") %>
                 </td>
                 <td class="text-center">
-                <% if allow? "administrators", "show" %>
                   <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, administrator_path(administrator),class: 'mr-3 text-info' %>|
-                <% end %>
                   <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
                     edit_administrator_path(administrator), class: 'mr-3 ml-3 text-warning' %>|
                     <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
