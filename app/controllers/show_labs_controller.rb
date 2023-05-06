@@ -5,6 +5,12 @@ class ShowLabsController < ApplicationController
   before_action :authorize
 
   def show
-    @lab = Lab.find(params[:id])
+    @lab = current_resource
+  end
+
+  private
+
+  def current_resource
+    @current_resource ||= Lab.find(params[:id]) if params[:id]
   end
 end

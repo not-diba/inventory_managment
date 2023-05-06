@@ -12,7 +12,7 @@ class EquipmentController < ApplicationController
   end
 
   def show
-    @equipment = Equipment.find(params[:id])
+    @equipment = current_resource
   end
 
   def new; end
@@ -24,11 +24,11 @@ class EquipmentController < ApplicationController
   end
 
   def edit
-    @equipment = Equipment.find(params[:id])
+    @equipment = current_resource
   end
 
   def update
-    @equipment = Equipment.find(params[:id])
+    @equipment = current_resource
 
     if @equipment.update(equipment_params)
       redirect_to @equipment
@@ -38,7 +38,7 @@ class EquipmentController < ApplicationController
   end
 
   def delete
-    @equipment = Equipment.find(params[:id])
+    @equipment = current_resource
     @equipment.destroy
 
     respond_to do |format|
@@ -50,5 +50,9 @@ class EquipmentController < ApplicationController
 
   def equipment_params
     params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks)
+  end
+
+  def current_resource
+    @current_resource ||= Equipment.find(params[:id]) if params[:id]
   end
 end

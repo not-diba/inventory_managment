@@ -3,14 +3,13 @@
 class DepartmentsController < ApplicationController
   before_action :authenticate
   before_action :authorize
+  before_action :find_department, only: %i[edit show update destroy]
 
   def index
     @departments = Department.all
   end
 
-  def show
-    @department = Department.find(params[:id])
-  end
+  def show; end
 
   def new
     @department = Department.new
@@ -26,13 +25,9 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  def edit
-    @department = Department.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @department = Department.find(params[:id])
-
     if @department.update(department_params)
       redirect_to @department
     else
@@ -41,7 +36,6 @@ class DepartmentsController < ApplicationController
   end
 
   def destroy
-    @department = Department.find(params[:id])
     @department.destroy
 
     respond_to do |format|
@@ -51,7 +45,15 @@ class DepartmentsController < ApplicationController
 
   private
 
+  def find_department
+    @department = current_resource
+  end
+
   def department_params
     params.require(:department).permit(:department_name, :location, :description)
+  end
+
+  def current_resource
+    @current_resource ||= Department.find(params[:id]) if params[:id]
   end
 end

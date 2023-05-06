@@ -3,6 +3,7 @@
 class AdministratorsController < ApplicationController
   before_action :authenticate
   before_action :authorize
+  before_action :find_administrator, only: %i[edit show update destroy]
 
   def index
     @administrators = Administrator.all
@@ -25,17 +26,11 @@ class AdministratorsController < ApplicationController
     end
   end
 
-  def show
-    @administrator = Administrator.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @administrator = Administrator.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @administrator = Administrator.find(params[:id])
-
     if @administrator.update(administrator_params)
       redirect_to administrator_path(@administrator)
     else
@@ -44,9 +39,15 @@ class AdministratorsController < ApplicationController
   end
 
   def destroy
-    @administrator = Administrator.find(params[:id])
-    @administrator.destroy
+    unless current_resource == current_administrator
+      @administrator.destroy
 
+      respond_to do |format|
+        format.js { render inline: 'location.reload();' }
+      end
+    end
+    puts('Flash Message')
+    # TODO: unauthorized action
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
@@ -54,7 +55,15 @@ class AdministratorsController < ApplicationController
 
   private
 
+  def find_administrator
+    @administrator = current_resource
+  end
+
   def administrator_params
     params.require(:administrator).permit(:name, :email, :role_id, :department_id, :password, :password_confirmation)
+  end
+
+  def current_resource
+    @current_resource ||= Administrator.find(params[:id]) if params[:id]
   end
 end
