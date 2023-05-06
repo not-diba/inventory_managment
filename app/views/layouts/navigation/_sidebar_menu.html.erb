@@ -23,7 +23,7 @@
     <hr>
     <h3>General</h3>
     <ul class="nav side-menu">
-      <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-table"></i> Inventory Tables <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li>
             <%= link_to "Departments" , departments_table_index_path %>
@@ -45,24 +45,13 @@
     <div class="menu_section">
       <h3>Management</h3>
       <ul class="nav side-menu">
-        <li><a><i class="fa fa-user"></i> Administrators <span class="fa fa-chevron-down"></span></a>
+        <li><a><i class="fa fa-user"></i> Administration <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li>
               <%= link_to "Administrators" , administrators_path %>
             </li>
             <li>
               <%= link_to "Roles" , roles_path %>
-            </li>
-            <li><a>Add<span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu">
-                <li>
-                  <%= link_to "New Administrator" , signup_path %>
-                </li>
-                <li>
-                  <%= link_to "New Role" , new_role_path %>
-                </li>
-
-              </ul>
             </li>
           </ul>
         </li>

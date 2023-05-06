@@ -1,8 +1,11 @@
 <h1>Administrators</h1>
 <div class="x_panel">
   <div class="x_title">
-    <h2>Details</h2>
-    <ul class="nav navbar-right panel_toolbox">
+    <ul class="nav navbar-right panel_toolbox float-right">
+      <%= link_to '<i class="fa fa-plus pull-right"></i> New Administrator' .html_safe, new_administrator_path, class:'text-info' %>
+    </ul>
+    
+    <ul class="nav navbar-right panel_toolbox float-left">
       <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for administrator ..."
           title="Type in a administrator name" class="form-control form-control-sm rounded border-info"></li>
           <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
