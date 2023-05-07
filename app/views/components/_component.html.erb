@@ -5,7 +5,7 @@
       <td><%= component.quantity %></td>
       <td><%= component.unit %></td>
       <td><%= component.returnable %></td>
-      <td><%= component.created_at %></td>
-      <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe,component %></td>
+      <td><%= component.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe, component_path(component),class: 'mr-3 text-info' %></td>
     </tr>
   </tbody>

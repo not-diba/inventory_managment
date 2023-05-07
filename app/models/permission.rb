@@ -4,9 +4,9 @@ class Permission
   def initialize(administrator)
     allow :sessions, %i[new create destroy]
     allow :departments, %i[index]
-    allow :labs, %i[index]
-    allow :equipment, %i[index]
-    allow :components, %i[index]
+    allow :labs, %i[index create]
+    allow :equipment, %i[index create]
+    allow :components, %i[index create]
     allow :departments_table, %i[index]
     allow :rooms, %i[index new create]
 
@@ -18,7 +18,7 @@ class Permission
         department.id.to_s == administrator.department_id.to_s
       end
 
-      allow :labs, %i[show new create edit update] do |lab|
+      allow :labs, %i[show new edit update] do |lab|
         lab.department_id.to_s == administrator.department_id.to_s
       end
 
@@ -26,11 +26,11 @@ class Permission
         room.department_id.to_s == administrator.department_id.to_s
       end
 
-      allow :equipment, %i[new create update edit show destroy] do |equipment|
+      allow :equipment, %i[new update edit show destroy] do |equipment|
         equipment.lab.department_id.to_s == administrator.department_id.to_s
       end
 
-      allow :components, %i[new create update edit show destroy] do |component|
+      allow :components, %i[new update edit show destroy] do |component|
         component.lab.department_id.to_s == administrator.department_id.to_s
       end
 
