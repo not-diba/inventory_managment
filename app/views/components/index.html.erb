@@ -1,38 +1,44 @@
-<h1>Laboratories</h1>
+<h1>Components</h1>
 <div class="x_panel">
   <div class="x_title">
     <h2>Details</h2>
     <ul class="nav navbar-right panel_toolbox">
-      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for laboratories ..."
-          title="Type in a laboratory name" class="form-control form-control-sm rounded border-info"></li>
+      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for component ..."
+          title="Type in a component name" class="form-control form-control-sm rounded border-info"></li>
           <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
     </ul>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
 
-    <% if @labs.length==0 %>
-      <p>No Laboratories Present</p>
+    <% if @components.length==0 %>
+      <p>No Components Present</p>
       <% else %>
         <table class="table table-sm" id="myTable">
-          <caption>List of all Laboratories</caption>
+          <caption>List of all Components</caption>
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">
-                <%= link_to 'Laboratory <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'lab_name' %>
+                <%= link_to 'Components <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'component_name' %>
               </th>
               <th scope="col">
-                Department 
+                Quantity 
+              </th>
+              <th scope="col">
+                Unit
+              </th>
+              <th scope="col">
+                Returnable 
+              </th>
+              <th scope="col">
+                Room 
+              </th>
+              <th scope="col">
+                Remarks 
               </th>
               <th scope="col">
                 <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
-              </th>
-              <th scope="col">
-                Equipment Count
-              </th>
-              <th scope="col">
-                Components Count
               </th>
               <th scope="col" class="text-center">
                 Actions
@@ -40,33 +46,39 @@
             </tr>
           </thead>
           <tbody>
-            <% @labs.each do |lab| %>
-                <% if lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+            <% @components.each do |component| %>
+              <% if component.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
                   <tr>
                     <th scope="row">
-                      <%= lab.id %>
+                      <%= component.id %>
                     </th>
                     <td>
-                      <%= lab.lab_name %>
+                      <%= component.component_name %>
                     </td>
                     <td>
-                      <%= Department.find(lab.department_id).department_name %>
+                      <%= component.quantity %>
                     </td>
                     <td>
-                      <%= lab.created_at.strftime("%Y-%m-%d") %>
+                      <%= Unit.find(component.unit_id).unit_name %>
                     </td>
                     <td>
-                      <%= lab.equipment.count %>
+                      <%= component.returnable %>
                     </td>
                     <td>
-                      <%= lab.components.count %>
+                      <%= Room.find(component.room_id).room_name %>
+                    </td>
+                    <td>
+                      <%= component.remarks %>
+                    </td>
+                    <td>
+                      <%= component.created_at.strftime("%Y-%m-%d") %>
                     </td>
                     <td class="text-center">
-                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 text-info' %>|
+                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, component_path(component),class: 'mr-3 text-info' %>|
                       <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                        edit_lab_path(lab), class: 'mr-3 ml-3 text-warning' %>|
+                        edit_component_path(component), class: 'mr-3 ml-3 text-warning' %>|
                         <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                          lab_path(lab), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                          component_path(component), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                           class: 'ml-3 text-danger' %>
                     </td>
                   </tr>

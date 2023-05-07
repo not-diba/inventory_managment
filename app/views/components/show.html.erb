@@ -1,0 +1,50 @@
+<div class="x_panel mt-5">
+  <div class="x_title">
+    <h2><%= @component.component_name %></h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Component Name</th>
+                <td><%= @component.component_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Quantity</th>
+                <td><%= @component.quantity %></td>
+            </tr>
+            <tr>
+                <th scope="row">Unit</th>
+                <td><%= Unit.find(@component.unit_id).unit_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Returnable</th>
+                <td><%= @component.returnable %></td>
+            </tr>
+            <tr>
+                <th scope="row">Room</th>
+                <td><%= Room.find(@component.room_id).room_name %></td>
+            </tr> 
+            <tr>
+                <th scope="row">Remarks</th>
+                <td><%= @component.remarks %></td>
+            </tr>
+            <tr>
+                <th scope="row">Created At</th>
+                <td><%= @component.created_at.strftime("%Y-%m-%d") %></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+    <%= link_to 'Back', components_index_path, class: 'btn btn-warning rounded-pill float-right' %>
+    <%= link_to '<i class="fa fa-trash-o"></i> Delete' .html_safe,
+                      component_path(@component.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: 'btn btn-danger rounded-pill float-left' %>
+    <%= link_to '<i class="fa fa-pencil-square-o"></i> Edit' .html_safe,
+                    edit_component_path(@component.id), class: 'btn btn-info rounded-pill float-left' %>
+</div>

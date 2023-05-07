@@ -1,34 +1,88 @@
-<h1><%= @lab.lab_name %></h1>
+<h1 class='text-info'>
+  <%= @lab.lab_name %>
+</h1>
 <div class="x_panel">
   <div class="x_title">
-    <h2></i> <%= @lab.lab_name + ' Equipment'%> </h2>
+    <h2 class="text-primary">
+      <%= @lab.lab_name + ' Equipment' %>
+    </h2>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
 
-  <% if @lab.equipment.length == 0 %>
-      <p>No Equipment Present</p>
-    <% else %>
-      <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Equipment Name</th>
-      <th scope="col">Make</th>
-      <th scope="col">Serial Number</th>
-      <th scope="col">Model Number</th>
-      <th scope="col">Status</th>
-      <th scope="col">Remarks</th>
-      <th scope="col">Room Location</th>
-      <th scope="col">Date Added</th>
-      <th scope="col">View</th>
-    </tr>
-  </thead>
-    <%= render @lab.equipment %>
-</table>
-    <% end %>
 
-  <hr/>
-    <h2 class='pl-2'> Add a Equipment </h2>
-    <%= render 'equipment/form' %>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active h6" id="equipment-tab" data-toggle="tab" href="#equipment" role="tab"
+          aria-controls="equipment" aria-selected="true">Equipment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h6" id="components-tab" data-toggle="tab" href="#components" role="tab"
+          aria-controls="components" aria-selected="false">Components</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
+
+        <% if @lab.equipment.length==0 %>
+          <p>No Equipment Present</p>
+          <% else %>
+            <table class="table table-hover">
+            <caption>List of all Laboratory Equipment</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Equipment Name</th>
+                  <th scope="col">Make</th>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Model Number</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Room Location</th>
+                  <th scope="col">Date Added</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <%= render @lab.equipment %>
+            </table>
+            <% end %>
+
+              <hr />
+              <h2 class='pl-2'> Add a Equipment </h2>
+              <%= render 'equipment/form' %>
+
+      </div>
+      <div class="tab-pane fade" id="components" role="tabpanel" aria-labelledby="components-tab">
+
+
+        <% if @lab.components.length==0 %>
+          <p>No Components Present</p>
+          <% else %>
+            <table class="table table-hover">
+            <caption>List of all Laboratory Components</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Component Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Unit</th>
+                  <th scope="col">Returnable</th>
+                  <th scope="col">Date Added</th>
+                  <th scope="col">Room Location</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <%= render @lab.components %>
+            </table>
+            <% end %>
+
+              <hr />
+              <h2 class='pl-2'> Add a Component </h2>
+              <%= render 'components/form' %>
+
+
+      </div>
+    </div>
   </div>
+</div>

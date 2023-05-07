@@ -31,6 +31,10 @@
                 <td><%= @equipment.status %></td>
             </tr>
             <tr>
+                <th scope="row">Room</th>
+                <td><%= Room.find(@equipment.room_id).room_name %></td>
+            </tr> 
+            <tr>
                 <th scope="row">Remarks</th>
                 <td><%= @equipment.remarks %></td>
             </tr>

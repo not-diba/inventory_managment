@@ -7,12 +7,14 @@ Rails.application.routes.draw do
 
   get 'labs', to: 'labs#index', as: 'labs_index'
   get 'equipment', to: 'equipment#index', as: 'equipment_index'
+  get 'components', to: 'components#index', as: 'components_index'
   resources :departments_table
   resources :show_labs
 
   resources :departments, shallow: true do
     resources :labs, shallow: true do
       resources :equipment
+      resources :components
     end
   end
 
@@ -20,4 +22,5 @@ Rails.application.routes.draw do
   resources :roles
   resources :sessions
   resources :rooms
+  resources :units
 end
