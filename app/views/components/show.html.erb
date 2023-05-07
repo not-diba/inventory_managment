@@ -19,13 +19,17 @@
                 <td><%= Unit.find(@component.unit_id).unit_name %></td>
             </tr>
             <tr>
-                <th scope="row">Returnable</th>
-                <td><%= @component.returnable %></td>
-            </tr>
+                <th scope="row">Laboratory</th>
+                <td><%= Lab.find(@component.lab_id).lab_name %></td>
+            </tr> 
             <tr>
                 <th scope="row">Room</th>
                 <td><%= Room.find(@component.room_id).room_name %></td>
             </tr> 
+            <tr>
+                <th scope="row">Returnable</th>
+                <td><%= @component.returnable %></td>
+            </tr>
             <tr>
                 <th scope="row">Remarks</th>
                 <td><%= @component.remarks %></td>

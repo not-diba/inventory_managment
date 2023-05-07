@@ -24,6 +24,9 @@
                 Room Name
               </th>
               <th scope="col">
+                Department Name
+              </th>
+              <th scope="col">
                 Equipment Count
               </th>
               <th scope="col">
@@ -46,6 +49,9 @@
                 </th>
                 <td>
                   <%= room.room_name %>
+                </td>
+                <td>
+                  <%= Department.find(room.department_id).department_name %>
                 </td>
                 <td>
                   <%= Equipment.where(room_id: room.id).all.count %>

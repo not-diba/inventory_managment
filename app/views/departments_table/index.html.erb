@@ -2,7 +2,9 @@
 <div class="x_panel">
   <div class="x_title">
   <ul class="nav navbar-right panel_toolbox float-right">
+    <% if current_administrator.role_id == 3 %>
       <%= link_to '<i class="fa fa-plus pull-right"></i> New Department' .html_safe, new_department_path, class:'text-info' %>
+    <% end %>
     </ul>
     <ul class="nav navbar-right panel_toolbox float-left">
       <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for role ..."
@@ -36,9 +38,11 @@
               <th scope="col">
                 <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
               </th>
-              <th scope="col" class="text-center">
-                Actions
-              </th>
+              <% if current_administrator.role_id == 3 %>
+                <th scope="col" class="text-center">
+                  Actions
+                </th>
+              <% end %>  
             </tr>
           </thead>
           <tbody>
@@ -63,7 +67,7 @@
                   <%= department.created_at.strftime("%Y-%m-%d") %>
                 </td>
                 <td class="text-center">
-                <% if department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+                <% if current_administrator.role_id == 3 %>
                   <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, departments_table_path(department),class: 'mr-3 text-info' %>|
                   <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
                     edit_department_path(department), class: 'mr-3 ml-3 text-warning' %>|

@@ -29,10 +29,13 @@
                 Unit
               </th>
               <th scope="col">
-                Returnable 
+                Laboratory 
               </th>
               <th scope="col">
                 Room 
+              </th>
+              <th scope="col">
+                Returnable 
               </th>
               <th scope="col">
                 Remarks 
@@ -62,10 +65,13 @@
                       <%= Unit.find(component.unit_id).unit_name %>
                     </td>
                     <td>
-                      <%= component.returnable %>
+                      <%= Lab.find(component.lab_id).lab_name %>
                     </td>
                     <td>
                       <%= Room.find(component.room_id).room_name %>
+                    </td>
+                    <td>
+                      <%= component.returnable %>
                     </td>
                     <td>
                       <%= component.remarks %>
