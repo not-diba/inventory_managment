@@ -1,0 +1,29 @@
+<%= form_with model: [@lab, @lab.components.build ] do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :component_name, class: 'form-control rounded border-primary', placeholder: 'Component Name', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity', :required => true %>
+    </div>
+    <div class="col">
+      <%= f.text_field :unit, class: 'form-control rounded border-primary', placeholder: 'Unit', :required => true %>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-auto justify-content-end">
+          <h6 class="text-primary mt-2">Returnable:</h6>
+        </div>
+        <div class="col-auto">
+          <%= f.check_box :returnable, class: 'input-group mt-1', style: 'width: 30px; height: 30px;' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
+      <%= link_to 'Back', department_path(@lab.department_id), class: 'btn btn-warning rounded-pill' %>
+    </div>
+  </div>
+<% end %>
+

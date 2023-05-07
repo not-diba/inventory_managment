@@ -1,0 +1,46 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Component details</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+    <%= form_with model: @component, :html=> {:class => 'form-horizontal form-label-left'} do |f| %>
+      <div class="item form-group">
+        <%= f.label :component_name, "Component Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :component_name, class: 'form-control rounded' , placeholder: 'Component Name' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :quantity, "Quantity" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :quantity, class: 'form-control rounded' , placeholder: 'Quantity' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :unit, "Unit" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :unit, class: 'form-control rounded' , placeholder: 'Unit' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :returnable, "Returnable" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6">
+            <%= f.check_box :returnable, class: 'input-group-prepend', style: 'width: 30px; height: 30px;' %>
+          </div>
+      </div>
+      
+      <div class="ln_solid"></div>
+      <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+          <%= link_to 'Cancel' , :back, class: 'btn btn-warning rounded-pill' %>
+          <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  component_name: MyString
+  quantity: 1
+  unit: MyString
+  returnable: false
+  lab: one
+
+two:
+  component_name: MyString
+  quantity: 1
+  unit: MyString
+  returnable: false
+  lab: two

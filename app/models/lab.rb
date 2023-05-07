@@ -3,4 +3,5 @@
 class Lab < ApplicationRecord
   belongs_to :department
   has_many :equipment
+  has_many :components
 end
