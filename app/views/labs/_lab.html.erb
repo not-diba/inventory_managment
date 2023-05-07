@@ -10,12 +10,10 @@
                   <div class="col-auto pt-2">
                     <%= lab.created_at.strftime("%Y-%m-%d") %>
                   </div>
-                  <div class="col-auto pt-2">
-                    <%= lab.equipment.count %>
-                  </div>
                 </div>
                 <div>
                   <%= link_to "Laboratory Equipment & Components" , lab, class: 'btn btn-outline-info btn-sm rounded-pill' %>
+                  <%= link_to "Items" , assign_path(lab), class: 'btn btn-outline-info btn-sm rounded-pill' %>
                   <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 ml-3 text-info' %>|
                   <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe,
                     edit_lab_path(lab), class: 'mr-3 ml-3 text-warning' %>|

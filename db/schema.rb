@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_142356) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_192306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_142356) do
     t.index ["lab_id"], name: "index_equipment_on_lab_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "item_name"
+    t.string "administrator_name"
+    t.string "room_id"
+    t.string "remarks"
+    t.integer "quantity"
+    t.string "unit"
+    t.string "assigned_to"
+    t.boolean "returned"
+    t.bigint "lab_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_id"], name: "index_items_on_lab_id"
+  end
+
   create_table "labs", force: :cascade do |t|
     t.string "lab_name"
     t.bigint "department_id", null: false
@@ -89,5 +104,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_142356) do
 
   add_foreign_key "components", "labs"
   add_foreign_key "equipment", "labs"
+  add_foreign_key "items", "labs"
   add_foreign_key "labs", "departments"
 end

@@ -7,6 +7,7 @@ class Permission
     allow :labs, %i[index create]
     allow :equipment, %i[index create]
     allow :components, %i[index create]
+    allow :items, %i[index create]
     allow :departments_table, %i[index]
     allow :rooms, %i[index new create]
     allow :units, %i[index new create edit update show destroy]
@@ -19,11 +20,15 @@ class Permission
         department.id.to_s == administrator.department_id.to_s
       end
 
-      allow :labs, %i[show new edit update] do |lab|
+      allow :labs, %i[show new edit update destroy] do |lab|
         lab.department_id.to_s == administrator.department_id.to_s
       end
 
-      allow :rooms, %i[show edit update] do |room|
+      allow :assign, %i[show] do |lab|
+        lab.department_id.to_s == administrator.department_id.to_s
+      end
+
+      allow :rooms, %i[show edit update destroy] do |room|
         room.department_id.to_s == administrator.department_id.to_s
       end
 
@@ -33,6 +38,10 @@ class Permission
 
       allow :components, %i[new update edit show destroy] do |component|
         component.lab.department_id.to_s == administrator.department_id.to_s
+      end
+
+      allow :items, %i[new update edit show destroy] do |item|
+        item.lab.department_id.to_s == administrator.department_id.to_s
       end
 
       allow :show_labs, %i[show] do |lab|

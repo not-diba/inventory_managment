@@ -32,7 +32,7 @@ class ComponentsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @component.destroy
 
     respond_to do |format|

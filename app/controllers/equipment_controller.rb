@@ -32,7 +32,7 @@ class EquipmentController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @equipment.destroy
 
     respond_to do |format|
@@ -47,7 +47,8 @@ class EquipmentController < ApplicationController
   end
 
   def equipment_params
-    params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks)
+    params.require(:equipment).permit(:equipment_name, :make, :serial_number, :model_number, :status, :remarks,
+                                      :room_id)
   end
 
   def current_resource

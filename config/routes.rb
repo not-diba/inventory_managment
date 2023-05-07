@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   get 'labs', to: 'labs#index', as: 'labs_index'
   get 'equipment', to: 'equipment#index', as: 'equipment_index'
   get 'components', to: 'components#index', as: 'components_index'
+  get 'items', to: 'items#index', as: 'items_index'
+
   resources :departments_table
   resources :show_labs
 
   resources :departments, shallow: true do
+    resources :assign, only: :show
     resources :labs, shallow: true do
+      resources :items
       resources :equipment
       resources :components
     end

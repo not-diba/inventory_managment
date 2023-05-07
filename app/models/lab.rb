@@ -5,4 +5,5 @@ class Lab < ApplicationRecord
   has_many :equipment
   has_many :components
   has_many :rooms
+  has_many :items
 end
