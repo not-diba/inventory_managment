@@ -1,0 +1,16 @@
+<tbody>
+    <tr>
+      <th scope="row"><%= item.id %></th>
+      <td><%= item.item_name %></td>
+      <td><%= item.administrator_name %></td>
+      <td><%= Lab.find(item.lab_id).lab_name %></td>
+      <td><%= Room.find(item.room_id).room_name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.unit %></td>
+      <td><%= item.assigned_to %></td>
+      <td><%= item.returned %></td>
+      <td><%= item.remarks %></td>
+      <td><%= item.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe, item_path(item),class: 'mr-3 text-info' %></td>
+    </tr>
+  </tbody>

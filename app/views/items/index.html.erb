@@ -1,0 +1,126 @@
+<h1>Assigned Items</h1>
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Details</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for item ..."
+          title="Type in a item name" class="form-control form-control-sm rounded border-info"></li>
+          <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+
+    <% if @items.length==0 %>
+      <p>No Items Present</p>
+      <% else %>
+        <table class="table table-sm" id="myTable">
+          <caption>List of all Items</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">
+                <%= link_to 'Item <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'item_name' %>
+              </th>
+              <th scope="col">
+                Administrator Name 
+              </th>
+              <th scope="col">
+                Laboratory
+              </th>
+              <th scope="col">
+                Room 
+              </th>
+              <th scope="col">
+                Quantity
+              </th>
+              <th scope="col">
+                Unit
+              </th>
+              <th scope="col">
+                Assigned To
+              </th>
+              <th scope="col">
+                Returned
+              </th>
+              <th scope="col">
+                Remarks
+              </th>
+              <th scope="col">
+                <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
+              </th>
+              <th scope="col" class="text-center">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.each do |item| %>
+            <% if item.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+                  <tr>
+                    <th scope="row">
+                      <%= item.id %>
+                    </th>
+                    <td>
+                      <%= item.item_name %>
+                    </td>
+                    <td>
+                      <%= item.administrator_name %>
+                    </td>
+                    <td>
+                      <%= Lab.find(item.lab_id).lab_name %>
+                    </td>
+                    <td>
+                      <%= Room.find(item.room_id).room_name %>
+                    </td>
+                    <td>
+                      <%= item.quantity %>
+                    </td>
+                    <td>
+                      <%= item.unit %>
+                    </td>
+                    <td>
+                      <%= item.assigned_to %>
+                    </td>
+                    <td>
+                      <%= item.returned %>
+                    </td>
+                    <td>
+                      <%= item.remarks %>
+                    </td>
+                    <td>
+                      <%= item.created_at.strftime("%Y-%m-%d") %>
+                    </td>
+                    <td class="text-center">
+                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, item_path(item),class: 'mr-3 text-info' %>|
+                        <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                          item_path(item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                          class: 'ml-3 text-danger' %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+          </tbody>
+        </table>
+        <% end %>
+
+          <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+            }
+          </script>

@@ -1,0 +1,63 @@
+<h1 class='text-info'>
+  <%= @lab.lab_name %>
+</h1>
+<div class="x_panel">
+  <div class="x_title">
+    <h2 class="text-primary">
+      <%= @lab.lab_name + ' Assigned Items' %>
+    </h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <div>
+    <% if @lab.items.length==0 %>
+          <p>No Items Present</p>
+          <% else %>
+            <table class="table table-hover">
+              <caption>List of all Laboratory Assigned Items</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Administrator Name</th>
+                  <th scope="col">Lab</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Unit</th>
+                  <th scope="col">Assigned To</th>
+                  <th scope="col">Returned</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date Added</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <%= render @lab.items %>
+            </table>
+            <% end %>
+    </div>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active h6" id="equipment-tab" data-toggle="tab" href="#equipment" role="tab"
+          aria-controls="equipment" aria-selected="true">Equipment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h6" id="components-tab" data-toggle="tab" href="#components" role="tab"
+          aria-controls="components" aria-selected="false">Components</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
+              <hr />
+              <h2 class='pl-2'> Assign an Item </h2>
+              <%= render 'items/form' %>
+
+      </div>
+      <div class="tab-pane fade" id="components" role="tabpanel" aria-labelledby="components-tab">
+        <hr />
+            <h2 class='pl-2'> Add a Component </h2>
+            <%= render 'items/components_form' %>
+      </div>
+    </div>
+  </div>
+</div>
