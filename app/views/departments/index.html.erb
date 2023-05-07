@@ -48,7 +48,7 @@
             <div class="col-sm-6 mt-3">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">
+                  <h5 class="card-title text-info">
                     <%= department.department_name %>
                   </h5>
                   <p class="card-text">
@@ -61,14 +61,14 @@
                     <%= link_to "Open" , department, class: 'btn btn-info' %>
                       <ul class="nav navbar-right panel_toolbox pt-3" style="font-size:13px;">
                         <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                          edit_department_path(department), class: 'mr-3' %>|
+                          edit_department_path(department), class: 'mr-3 text-warning' %>|
                           <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
                             department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                            class: 'ml-3' %>
+                            class: 'ml-3 text-danger' %>
                     </ul>
                     <% else %>
                         <h6>Administrator:</h6> 
-                        <%= Administrator.find(department.administrator_id).name %>
+                        <div class='text-primary'><%= Administrator.find(department.administrator_id).name %></div>
                     <% end %>
                 </div>
               </div>
