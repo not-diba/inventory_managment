@@ -9,6 +9,7 @@ class Permission
     allow :components, %i[index create]
     allow :departments_table, %i[index]
     allow :rooms, %i[index new create]
+    allow :units, %i[index new create edit update show destroy]
 
     if administrator && administrator.role_id == 3 # admin
       allow_all

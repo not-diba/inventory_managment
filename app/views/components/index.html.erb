@@ -32,6 +32,12 @@
                 Returnable 
               </th>
               <th scope="col">
+                Room 
+              </th>
+              <th scope="col">
+                Remarks 
+              </th>
+              <th scope="col">
                 <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
               </th>
               <th scope="col" class="text-center">
@@ -53,10 +59,16 @@
                       <%= component.quantity %>
                     </td>
                     <td>
-                      <%= component.unit %>
+                      <%= Unit.find(component.unit_id).unit_name %>
                     </td>
                     <td>
                       <%= component.returnable %>
+                    </td>
+                    <td>
+                      <%= Room.find(component.room_id).room_name %>
+                    </td>
+                    <td>
+                      <%= component.remarks %>
                     </td>
                     <td>
                       <%= component.created_at.strftime("%Y-%m-%d") %>

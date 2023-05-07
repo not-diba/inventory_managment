@@ -3,9 +3,11 @@
       <th scope="row"><%= component.id %></th>
       <td><%= component.component_name %></td>
       <td><%= component.quantity %></td>
-      <td><%= component.unit %></td>
+      <td><%= Unit.find(component.unit_id).unit_name %></td>
       <td><%= component.returnable %></td>
       <td><%= component.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= Room.find(component.room_id).room_name %></td>
+      <td><%= component.remarks %></td>
       <td><%= link_to '<i class="fa fa-eye"></i> View'.html_safe, component_path(component),class: 'mr-3 text-info' %></td>
     </tr>
   </tbody>

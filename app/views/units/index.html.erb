@@ -1,33 +1,27 @@
-<h1>Rooms</h1>
+<h1>Units</h1>
 <div class="x_panel">
   <div class="x_title">
     <ul class="nav navbar panel_toolbox float-right">
-      <%= link_to '<i class="fa fa-plus pull-right"></i> Add Room' .html_safe, new_room_path, class: 'text-info' %>
+      <%= link_to '<i class="fa fa-plus pull-right"></i> Add Unit' .html_safe, new_unit_path, class: 'text-info' %>
     </ul>
     <ul class="nav navbar-right panel_toolbox float-left">
-      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for room ..."
-          title="Type in a room name" class="form-control form-control-sm rounded border-info"></li>
+      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for unit ..."
+          title="Type in a unit name" class="form-control form-control-sm rounded border-info"></li>
       <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
     </ul>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-    <% if @rooms.length==0 %>
-      <p>No Rooms Present</p>
+    <% if @units.length==0 %>
+      <p>No Units Present</p>
       <% else %>
         <table class="table table-sm" id="myTable">
-          <caption>List of all Rooms</caption>
+          <caption>List of all Units</caption>
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">
-                Room Name
-              </th>
-              <th scope="col">
-                Equipment Count
-              </th>
-              <th scope="col">
-                Components Count
+                Unit Name
               </th>
               <th scope="col">
                 Created At
@@ -38,34 +32,25 @@
             </tr>
           </thead>
           <tbody>
-            <% @rooms.each do |room| %>
-            <% if room.department_id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+            <% @units.each do |unit| %>
               <tr>
                 <th scope="row">
-                  <%= room.id %>
+                  <%= unit.id %>
                 </th>
                 <td>
-                  <%= room.room_name %>
+                  <%= unit.unit_name %>
                 </td>
                 <td>
-                  <%= Equipment.where(room_id: room.id).all.count %>
-                </td>
-                <td>
-                  <%= Component.where(room_id: room.id).all.count %>
-                </td>
-                <td>
-                  <%= room.created_at.strftime("%Y-%m-%d") %>
+                  <%= unit.created_at.strftime("%Y-%m-%d") %>
                 </td>
                 <td class="text-center">
-                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, room_path(room),class: 'mr-3 text-info' %>|
                       <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                        edit_room_path(room), class: 'mr-3 ml-3 text-warning' %>|
+                        edit_unit_path(unit), class: 'mr-3 ml-3 text-warning' %>|
                         <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                          room_path(room), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                          unit_path(unit), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                           class: 'ml-3 text-danger' %>
                     </td>
               </tr>
-              <% end %>
               <% end %>
           </tbody>
         </table>

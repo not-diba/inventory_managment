@@ -23,14 +23,25 @@
       <div class="item form-group">
         <%= f.label :unit, "Unit" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
           <div class="col-md-6 col-sm-6 ">
-            <%= f.text_field :unit, class: 'form-control rounded' , placeholder: 'Unit' ,
-              :required=> true %>
+            <%= f.collection_select :unit_id, Unit.order(:unit_name),:id,:unit_name, { include_blank: "Select Unit" }, { class: "form-control rounded" } %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :room_id, "Room" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
           </div>
       </div>
       <div class="item form-group">
         <%= f.label :returnable, "Returnable" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
           <div class="col-md-6 col-sm-6">
             <%= f.check_box :returnable, class: 'input-group-prepend', style: 'width: 30px; height: 30px;' %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :remarks, "Remarks" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.text_field :remarks, class: 'form-control rounded' , placeholder: 'Remarks' %>
           </div>
       </div>
       

@@ -7,15 +7,21 @@
       <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity', :required => true %>
     </div>
     <div class="col">
-      <%= f.text_field :unit, class: 'form-control rounded border-primary', placeholder: 'Unit', :required => true %>
+      <%= f.collection_select :unit_id, Unit.order(:unit_name),:id,:unit_name, { include_blank: "Unit" }, { class: "form-control rounded" } %>
+    </div>
+    <div class="col">
+      <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
+    </div>
+    <div class="col">
+      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks' %>
     </div>
     <div class="col">
       <div class="row">
         <div class="col-auto justify-content-end">
-          <h6 class="text-primary mt-2">Returnable:</h6>
+          <div class="text-primary">Returnable:</div>
         </div>
         <div class="col-auto">
-          <%= f.check_box :returnable, class: 'input-group mt-1', style: 'width: 30px; height: 30px;' %>
+          <%= f.check_box :returnable, class: 'input-group mt-1', style: 'width: 15px; height: 15px;' %>
         </div>
       </div>
     </div>

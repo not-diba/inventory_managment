@@ -47,7 +47,7 @@ class ComponentsController < ApplicationController
   end
 
   def component_params
-    params.require(:component).permit(:component_name, :quantity, :unit, :returnable)
+    params.require(:component).permit(:component_name, :quantity, :unit_id, :returnable, :room_id, :remarks)
   end
 
   def current_resource

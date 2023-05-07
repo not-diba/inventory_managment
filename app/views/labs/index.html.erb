@@ -31,6 +31,9 @@
               <th scope="col">
                 Equipment Count
               </th>
+              <th scope="col">
+                Components Count
+              </th>
               <th scope="col" class="text-center">
                 Actions
               </th>
@@ -54,6 +57,9 @@
                     </td>
                     <td>
                       <%= lab.equipment.count %>
+                    </td>
+                    <td>
+                      <%= lab.components.count %>
                     </td>
                     <td class="text-center">
                       <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 text-info' %>|
