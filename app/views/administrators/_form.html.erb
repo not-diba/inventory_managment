@@ -32,6 +32,20 @@
             <%= f.collection_select :department_id, Department.order(:department_name),:id,:department_name,{ include_blank: "Select Department" }, { class: "form-control rounded" } %>
           </div>
       </div>
+      <div class="item form-group">
+        <%= f.label :password, "Password" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.password_field :password, class: 'form-control rounded' , placeholder: 'Password' ,
+              :required=> true %>
+          </div>
+      </div>
+      <div class="item form-group">
+        <%= f.label :password_confirmation, "Confirm Password" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+            <%= f.password_field :email, class: 'form-control rounded' , placeholder: 'Confirm Password' ,
+              :required=> true %>
+          </div>
+      </div>
       <div class="ln_solid"></div>
       <div class="item form-group">
         <div class="col-md-6 col-sm-6 offset-md-3">
