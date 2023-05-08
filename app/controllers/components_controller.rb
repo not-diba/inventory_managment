@@ -18,9 +18,14 @@ class ComponentsController < ApplicationController
 
   def create
     @lab = Lab.find(params[:lab_id])
-    @component = @lab.components.create(component_params)
-    redirect_to lab_path(@lab)
-    flash[:success] = 'Component Created.'
+    @component = @lab.components.new(component_params)
+    if @component.save
+      redirect_to lab_path(@lab)
+      flash[:success] = 'Component Created.'
+    else
+      redirect_to lab_path(@lab)
+      flash[:error] = @component.errors.full_messages
+    end
   end
 
   def edit; end
@@ -30,8 +35,8 @@ class ComponentsController < ApplicationController
       redirect_to @component
       flash[:notice] = 'Component Updated.'
     else
+      flash.now[:error] = @component.errors.full_messages
       render action: 'edit', status: :unprocessable_entity
-      flash[:error] = 'Failed to Update Component.'
     end
   end
 

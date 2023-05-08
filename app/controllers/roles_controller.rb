@@ -18,8 +18,8 @@ class RolesController < ApplicationController
       redirect_to roles_path
       flash[:success] = 'Role Created.'
     else
-      render 'new'
-      flash[:error] = 'Failed to Update Role.'
+      flash.now[:error] = @role.errors.full_messages
+      render 'new', status: :unprocessable_entity
     end
   end
 

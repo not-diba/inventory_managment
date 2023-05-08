@@ -21,8 +21,8 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
       flash[:success] = 'Room Created.'
     else
-      render 'new'
-      flash[:error] = 'Failed to Delete Room.'
+      flash.now[:error] = @room.errors.full_messages
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -33,8 +33,8 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
       flash[:notice] = 'Room Created.'
     else
+      flash.now[:error] = @room.errors.full_messages
       render action: 'edit', status: :unprocessable_entity
-      flash[:error] = 'Failed to Update Room.'
     end
   end
 

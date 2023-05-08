@@ -23,8 +23,8 @@ class AdministratorsController < ApplicationController
       redirect_to administrators_path
       flash[:success] = 'Administrator Created.'
     else
-      render 'new'
-      flash[:error] = 'Failed to create Administrator.'
+      flash.now[:error] = @administrator.errors.full_messages
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -37,6 +37,7 @@ class AdministratorsController < ApplicationController
       redirect_to administrator_path(@administrator)
       flash[:notice] = 'Administrator Updated.'
     else
+      flash.now[:error] = @administrator.errors.full_messages
       render action: 'edit', status: :unprocessable_entity
     end
   end

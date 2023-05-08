@@ -21,8 +21,8 @@ class DepartmentsController < ApplicationController
       redirect_to action: 'index'
       flash[:success] = 'Department Created.'
     else
+      flash.now[:error] = @department.errors.full_messages
       render action: 'new', status: :unprocessable_entity
-      flash[:error] = 'Failed to Create Department.'
     end
   end
 
@@ -33,8 +33,8 @@ class DepartmentsController < ApplicationController
       redirect_to departments_table_index_path
       flash[:notice] = 'Department Updated.'
     else
+      flash.now[:error] = @department.errors.full_messages
       render action: 'edit', status: :unprocessable_entity
-      flash[:error] = 'Failed to Update Department.'
     end
   end
 
