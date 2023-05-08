@@ -19,8 +19,8 @@ class UnitsController < ApplicationController
       redirect_to units_path
       flash[:success] = 'Unit Added.'
     else
-      render 'new'
-      flash[:notice] = 'Failed to Add Unit.'
+      flash.now[:error] = @unit.errors.full_messages
+      render 'new', status: :unprocessable_entity
     end
   end
 
@@ -31,8 +31,8 @@ class UnitsController < ApplicationController
       redirect_to unit_params
       flash[:notice] = 'Unit Updated.'
     else
-      render action: 'edit', status: :unprocessable_entity
-      flash[:notice] = 'Failed to Update Unit.'
+      flash.now[:error] = @unit.errors.full_messages
+      render 'new', status: :unprocessable_entity
     end
   end
 

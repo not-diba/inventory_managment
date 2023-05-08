@@ -18,9 +18,14 @@ class ItemsController < ApplicationController
 
   def create
     @lab = Lab.find(params[:lab_id])
-    @item = @lab.items.create(item_params)
-    redirect_to assign_path(@lab)
-    flash[:notice] = 'Item Assigned.'
+    @item = @lab.items.new(item_params)
+    if @item.save
+      redirect_to assign_path(@lab)
+      flash[:notice] = 'Item Assigned.'
+    else
+      redirect_to assign_path(@lab)
+      flash[:error] = @item.errors.full_messages
+    end
   end
 
   def destroy

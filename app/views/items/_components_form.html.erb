@@ -2,7 +2,7 @@
   <div class="row align-items-center">
     <div class="col-auto pt-2">
       <%= f.label :item_name, "Component Name*" %>
-      <%= f.collection_select :item_name, @lab.equipment.order(:equipment_name),:equipment_name,:equipment_name, { include_blank: "Component" }, { class: "form-control rounded" } %>
+      <%= f.collection_select :item_name, @lab.components.order(:component_name),:component_name,:component_name, { include_blank: "Component" }, { class: "form-control rounded" } %>
     </div>
     <div class="col-auto pt-2">
       <%= f.label :administrator_name, "Administrator Name*" %>
