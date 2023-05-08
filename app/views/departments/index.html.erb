@@ -58,7 +58,8 @@
                     <%= department.created_at.strftime("%Y-%m-%d") %>
                   </p>
                   <% if department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
-                    <%= link_to "Open" , department, class: 'btn btn-info' %>
+                      <%= link_to "Open" , department, class: 'btn btn-info' %>
+                    <% elsif current_administrator.role_id == 3 %>
                       <ul class="nav navbar-right panel_toolbox pt-3" style="font-size:13px;">
                         <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
                           edit_department_path(department), class: 'mr-3 text-warning' %>|

@@ -26,10 +26,12 @@
       <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe, edit_lab_path(lab),
               class: 'text-warning' %>
     </div>
-    <div class="col">
-      <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe, lab_path(lab), data: {
-                turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %>
-    </div>
+    <% if current_administrator.role_id == 3 %>
+      <div class="col">
+        <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe, lab_path(lab), data: {
+                  turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %>
+      </div>
+    <% end %>
   </div>
 </div>      
     </div>
