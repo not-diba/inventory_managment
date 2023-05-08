@@ -16,8 +16,10 @@ class RolesController < ApplicationController
     @role = Role.new(role_params)
     if @role.save
       redirect_to roles_path
+      flash[:success] = 'Role Created.'
     else
       render 'new'
+      flash[:error] = 'Failed to Update Role.'
     end
   end
 
@@ -28,6 +30,7 @@ class RolesController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:error] = 'Role Deleted..'
   end
 
   private

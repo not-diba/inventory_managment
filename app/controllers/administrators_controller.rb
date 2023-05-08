@@ -20,9 +20,11 @@ class AdministratorsController < ApplicationController
   def create
     @administrator = Administrator.new(administrator_params)
     if @administrator.save
-      redirect_to administrators_path, notice: 'Thank you for signing up!'
+      redirect_to administrators_path
+      flash[:success] = 'Administrator Created.'
     else
       render 'new'
+      flash[:error] = 'Failed to create Administrator.'
     end
   end
 
@@ -33,6 +35,7 @@ class AdministratorsController < ApplicationController
   def update
     if @administrator.update(administrator_params)
       redirect_to administrator_path(@administrator)
+      flash[:notice] = 'Administrator Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
     end
@@ -45,12 +48,12 @@ class AdministratorsController < ApplicationController
       respond_to do |format|
         format.js { render inline: 'location.reload();' }
       end
+      flash[:notice] = 'Administrator Deleted.'
     end
-    puts('Flash Message')
-    # TODO: unauthorized action
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:error] = 'Failed to delete Administrator.'
   end
 
   private

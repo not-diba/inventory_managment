@@ -17,8 +17,10 @@ class UnitsController < ApplicationController
     @unit = Unit.new(unit_params)
     if @unit.save
       redirect_to units_path
+      flash[:success] = 'Unit Added.'
     else
       render 'new'
+      flash[:notice] = 'Failed to Add Unit.'
     end
   end
 
@@ -27,8 +29,10 @@ class UnitsController < ApplicationController
   def update
     if @unit.update(unit_params)
       redirect_to unit_params
+      flash[:notice] = 'Unit Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:notice] = 'Failed to Update Unit.'
     end
   end
 
@@ -38,6 +42,7 @@ class UnitsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Unit Deleted.'
   end
 
   private

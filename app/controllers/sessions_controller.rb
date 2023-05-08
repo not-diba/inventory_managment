@@ -10,15 +10,17 @@ class SessionsController < ApplicationController
     administrator = Administrator.find_by_email(params[:email])
     if administrator&.authenticate(params[:password])
       session[:administrator_id] = administrator.id
-      redirect_to root_path, notice: 'Logged in!'
+      redirect_to root_path
+      flash[:success] = 'Welcome, ' + administrator.name
     else
-      flash.now.alert = 'Email or password is invalid'
       render 'new'
+      flash[:error] = 'Email or password is invalid'
     end
   end
 
   def destroy
     session[:administrator_id] = nil
-    redirect_to root_url, notice: 'Logged out!'
+    redirect_to root_url
+    flash[:notice] = 'Logged Out.'
   end
 end

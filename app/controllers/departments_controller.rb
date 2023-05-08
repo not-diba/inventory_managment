@@ -19,9 +19,10 @@ class DepartmentsController < ApplicationController
     @department = Department.new(department_params)
     if @department.save
       redirect_to action: 'index'
+      flash[:success] = 'Department Created.'
     else
-      # TODO: flash message here
       render action: 'new', status: :unprocessable_entity
+      flash[:error] = 'Failed to Create Department.'
     end
   end
 
@@ -30,8 +31,10 @@ class DepartmentsController < ApplicationController
   def update
     if @department.update(department_params)
       redirect_to departments_table_index_path
+      flash[:notice] = 'Department Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:error] = 'Failed to Update Department.'
     end
   end
 
@@ -41,6 +44,7 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Department Deleted.'
   end
 
   private
