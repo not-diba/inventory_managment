@@ -6,16 +6,16 @@
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-    
+    <div class='row'>
     <% if @department.labs.length == 0 %>
       <p>No Laboratories Present</p>
     <% else %>
       <%= render @department.labs %>
     <% end %>
-    
+    </div>
   <hr/>
     <h2 class='pl-2'> Add a Laboratory </h2>
-  <%= render 'labs/form' %>
+      <%= render 'labs/form' %>
   </div>
 
   

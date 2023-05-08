@@ -15,6 +15,10 @@
                 <td><%= Department.find(@lab.department_id).department_name %></td>
             </tr>
             <tr>
+                <th scope="row">Administrator Name</th>
+                <td><%= Administrator.find(@lab.administrator_id).name %></td>
+            </tr>
+            <tr>
                 <th scope="row">Equipment Count</th>
                 <td><%= @lab.equipment.count %></td>
             </tr>

@@ -1,9 +1,11 @@
 <%= form_with model: [@lab, @lab.items.build ] do |f| %>
-  <div class="row">
-    <div class="col">
+  <div class="row align-items-center">
+    <div class="col-auto pt-2">
+      <%= f.label :item_name, "Equipment Name*" %>
       <%= f.collection_select :item_name, @lab.equipment.order(:equipment_name),:equipment_name,:equipment_name, { include_blank: "Equipment" }, { class: "form-control rounded" } %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :administrator_name, "Administrator Name*" %>
       <% if current_administrator.role_id == 3 %>
               <%= f.collection_select :administrator_name, Administrator.order(:name),:name,:name, { include_blank: "Administrator" }, { class: "form-control rounded" } %>
             <% elsif current_administrator.role_id == 4 %>
@@ -12,33 +14,30 @@
               <input type="administrator_name" class="form-control rounded" readonly="readonly" placeholder= <%= current_administrator.name %>>
             <% end %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :room_id, "Room Name*" %>
       <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
     </div>
-    <div class="col">
-      <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :quantity, "Quantity" %>
+      <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity' %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :assigned_to, "Assigned To" %>
       <%= f.text_field :assigned_to, class: 'form-control rounded border-primary', placeholder: 'Assigned To', :required => true %>
     </div>
-    <div class="col">
-      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :remarks, "Remarks" %>
+      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks' %>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-auto justify-content-end">
-          <div class="text-primary">Returned</div>
-        </div>
-        <div class="col-auto">
-          <%= f.check_box :returned, class: 'input-group mt-1', style: 'width: 15px; height: 15px;' %>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-auto">
-      <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
-      <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill' %>
+    <div class="col-auto pt-2">
+      <%= f.label :returned, "Returned" %>
+      <%= f.check_box :returned, class: 'input-group mt-1', style: 'width: 30px; height: 30px;' %>
     </div>
   </div>
+   <div class="float-right pt-3">
+      <%= f.submit "Assign Equipment", :class => 'btn btn-primary rounded-pill' %>
+      <%= link_to 'Back', :back, class: 'btn btn-warning rounded-pill' %>
+    </div>
 <% end %>
 

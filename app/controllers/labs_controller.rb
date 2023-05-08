@@ -47,7 +47,7 @@ class LabsController < ApplicationController
   end
 
   def labs_params
-    params.require(:lab).permit(:lab_name)
+    params.require(:lab).permit(:lab_name, :administrator_id)
   end
 
   def current_resource

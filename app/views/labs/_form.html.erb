@@ -1,12 +1,32 @@
-
 <%= form_with model: [@department, @department.labs.build ] do |f| %>
-  <div class="row">
-    <div class="col-auto mr-auto">
-      <%= f.text_field :lab_name, class: 'form-control rounded border-primary', placeholder: 'Laboratory Name', :required => true %>
+  <div class="row justify-content-between">
+    <div class="col-auto">
+      <div class='row'>
+        <div class='col-auto'>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text ">Laboratory</span>
+            </div>
+              <%= f.text_field :lab_name, class: 'form-control rounded' , placeholder: 'Laboratory Name' ,
+            :required=> true %>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Administrator Name</span>
+            </div>
+              <%= f.collection_select :administrator_id, Administrator.order(:name),:id,:name, {
+                include_blank: "Select Administrator" }, { class: "form-control rounded" } %>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-auto">
-      <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
-      <%= link_to 'Back', departments_path, class: 'btn btn-warning rounded-pill' %>
+      <%= f.submit nil, :class=> 'btn btn-primary rounded-pill' %>
+        <%= link_to 'Back' , departments_path, class: 'btn btn-warning rounded-pill' %>
     </div>
   </div>
-<% end %>
+  <% end %>
+
+  

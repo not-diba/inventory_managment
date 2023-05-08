@@ -1,27 +1,37 @@
-  <div class="container">
-  <br>
-  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+<div class='col-auto'>
+  <div class="card mt-3" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= link_to lab.lab_name, lab %>
+      </h5>
+      <p class="card-subtitle mb-2 text-muted">
+        <%= Administrator.find(lab.administrator_id).name %>
+      </p>
+      <br>
+      <div class="container">
+  <div class="row justify-content-between">
     <div class="col">
-      <div class="p-1 pr-2 pl-2 border bg-light d-flex justify-content-between">
-                <div class="row">
-                  <div class="col-auto pt-2">
-                    <%= link_to lab.lab_name, lab %>
-                  </div>
-                  <div class="col-auto pt-2">
-                    <%= lab.created_at.strftime("%Y-%m-%d") %>
-                  </div>
-                </div>
-                <div>
-                  <%= link_to "Laboratory Equipment & Components" , lab, class: 'btn btn-outline-info btn-sm rounded-pill' %>
-                  <%= link_to "Items" , assign_path(lab), class: 'btn btn-outline-info btn-sm rounded-pill' %>
-                  <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 ml-3 text-info' %>|
-                  <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe,
-                    edit_lab_path(lab), class: 'mr-3 ml-3 text-warning' %>|
-                    <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                      lab_path(lab), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                      class: 'ml-3 text-danger' %>
-                </div>
-      </div>
+      <%= link_to "Add Inventory" , lab, class: 'btn btn-info btn-sm rounded-pill' %>
+    </div>
+    <div class="col">
+      <%= link_to "Assign Inventory" , assign_path(lab), class: 'btn btn-info btn-sm rounded-pill' %>
+    </div>
+  </div>
+  <hr>
+  <div class="row justify-content-between">
+    <div class="col">
+      <%= link_to '<i class="fa fa-eye"></i> View' .html_safe, show_lab_path(lab),class: 'text-info' %>
+    </div>
+    <div class="col">
+      <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe, edit_lab_path(lab),
+              class: 'text-warning' %>
+    </div>
+    <div class="col">
+      <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe, lab_path(lab), data: {
+                turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %>
+    </div>
+  </div>
+</div>      
     </div>
   </div>
 </div>

@@ -26,6 +26,9 @@
                 Department 
               </th>
               <th scope="col">
+                Administrator 
+              </th>
+              <th scope="col">
                 <%= link_to 'Created At <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'created_at' %>
               </th>
               <th scope="col">
@@ -51,6 +54,9 @@
                     </td>
                     <td>
                       <%= Department.find(lab.department_id).department_name %>
+                    </td>
+                    <td>
+                      <%= Administrator.find(lab.administrator_id).name %>
                     </td>
                     <td>
                       <%= lab.created_at.strftime("%Y-%m-%d") %>

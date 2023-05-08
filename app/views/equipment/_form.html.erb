@@ -1,30 +1,37 @@
 <%= form_with model: [@lab, @lab.equipment.build ] do |f| %>
-  <div class="row">
-    <div class="col">
+  <div class="row align-items-center">
+    <div class="col-auto pt-2">
+      <%= f.label :equipment_name, "Equipment Name*" %>
       <%= f.text_field :equipment_name, class: 'form-control rounded border-primary', placeholder: 'Equipment Name', :required => true %>
     </div>
-    <div class="col">
-      <%= f.text_field :make, class: 'form-control rounded border-primary', placeholder: 'Make', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :make, "Make" %>
+      <%= f.text_field :make, class: 'form-control rounded border-primary', placeholder: 'Make' %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :serial_number, "Serial No." %>
       <%= f.text_field :serial_number, class: 'form-control rounded border-primary', placeholder: 'Serial Number', :required => true %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :model_number, "Model No." %>
       <%= f.text_field :model_number, class: 'form-control rounded border-primary', placeholder: 'Model Number', :required => true %>
     </div>
-    <div class="col">
-      <%= f.text_field :status, class: 'form-control rounded border-primary', placeholder: 'Status', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :status, "Status" %>
+      <%= f.text_field :status, class: 'form-control rounded border-primary', placeholder: 'Status' %>
     </div>
-    <div class="col">
-      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :remarks, "Remarks" %>
+      <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks' %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :room_id, "Room" %>
       <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
     </div>
-    <div class="col-auto">
+  </div>
+  <div class="float-right pt-3">
       <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
       <%= link_to 'Back', department_path(@lab.department_id), class: 'btn btn-warning rounded-pill' %>
     </div>
-  </div>
 <% end %>
 

@@ -13,6 +13,12 @@
               :required=> true %>
           </div>
       </div>
+      <div class="item form-group">
+        <%= f.label :administrator_id, "Administrator Name*" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
+          <div class="col-md-6 col-sm-6 ">
+           <%= f.collection_select :administrator_id, Administrator.order(:name),:id,:name, { include_blank: "Select Administrator" }, { class: "form-control rounded" } %>
+          </div>
+      </div>
       <div class="ln_solid"></div>
       <div class="item form-group">
         <div class="col-md-6 col-sm-6 offset-md-3">

@@ -1,35 +1,33 @@
 <%= form_with model: [@lab, @lab.components.build ] do |f| %>
-  <div class="row">
-    <div class="col">
+  <div class="row align-items-center">
+    <div class="col-auto pt-2">
+      <%= f.label :component_name, "Component Name*" %>
       <%= f.text_field :component_name, class: 'form-control rounded border-primary', placeholder: 'Component Name', :required => true %>
     </div>
-    <div class="col">
-      <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity', :required => true %>
+    <div class="col-auto pt-2">
+      <%= f.label :quantity, "Quantity" %>
+      <%= f.text_field :quantity, class: 'form-control rounded border-primary', placeholder: 'Quantity' %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :unit_id, "Unit" %>
       <%= f.collection_select :unit_id, Unit.order(:unit_name),:id,:unit_name, { include_blank: "Unit" }, { class: "form-control rounded" } %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :room_id, "Room " %>
       <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
     </div>
-    <div class="col">
+    <div class="col-auto pt-2">
+      <%= f.label :remarks, "Remarks" %>
       <%= f.text_field :remarks, class: 'form-control rounded border-primary', placeholder: 'Remarks' %>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-auto justify-content-end">
-          <div class="text-primary">Returnable:</div>
-        </div>
-        <div class="col-auto">
-          <%= f.check_box :returnable, class: 'input-group mt-1', style: 'width: 15px; height: 15px;' %>
-        </div>
-      </div>
+    <div class="col-auto pt-2">
+      <%= f.label :returnable, "Returnable" %>
+      <%= f.check_box :returnable, class: 'input-group mt-1', style: 'width: 30px; height: 30px;' %>
     </div>
-
-    <div class="col-auto">
+  </div>
+   <div class="float-right pt-3">
       <%= f.submit nil, :class => 'btn btn-primary rounded-pill' %>
       <%= link_to 'Back', department_path(@lab.department_id), class: 'btn btn-warning rounded-pill' %>
     </div>
-  </div>
 <% end %>
 
