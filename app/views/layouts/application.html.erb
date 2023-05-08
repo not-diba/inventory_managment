@@ -10,7 +10,6 @@
     
     <%= stylesheet_link_tag 'bootstrap.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'jquery.mCustomScrollbar.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'nprogress', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'animate.min', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     
@@ -61,6 +60,17 @@
     <%= javascript_include_tag 'jquery.min', 'data-turbolinks-track': 'reload' %>
     <!-- Bootstrap -->
     <%= javascript_include_tag 'bootstrap.bundle.min', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'datatables.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'pdfmake.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'vfs_fonts', 'data-turbolinks-track': 'reload' %>
+
+
+    <style>
+      .dataTables_filter {
+          width: auto;   
+          }
+    </style>
 
     <!-- Custom Theme Scripts -->
     <%= javascript_include_tag 'custom.min', 'data-turbolinks-track': 'reload' %>

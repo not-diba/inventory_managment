@@ -2,11 +2,6 @@
 <div class="x_panel">
   <div class="x_title">
     <h2>Details</h2>
-    <ul class="nav navbar-right panel_toolbox">
-      <li><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for component ..."
-          title="Type in a component name" class="form-control form-control-sm rounded border-info"></li>
-          <li><i class="fa fa-search pt-2 pl-2 text-info" aria-hidden="true"></i></li>
-    </ul>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
@@ -14,7 +9,7 @@
     <% if @components.length==0 %>
       <p>No Components Present</p>
       <% else %>
-        <table class="table table-sm" id="myTable">
+        <table class="table table-sm" id="datatable-buttons">
           <caption>List of all Components</caption>
           <thead>
             <tr>
@@ -93,24 +88,3 @@
           </tbody>
         </table>
         <% end %>
-
-          <script>
-            function myFunction() {
-              var input, filter, table, tr, td, i, txtValue;
-              input = document.getElementById("myInput");
-              filter = input.value.toUpperCase();
-              table = document.getElementById("myTable");
-              tr = table.getElementsByTagName("tr");
-              for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                  txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                  } else {
-                    tr[i].style.display = "none";
-                  }
-                }
-              }
-            }
-          </script>
