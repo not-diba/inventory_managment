@@ -20,6 +20,7 @@ class LabsController < ApplicationController
     @department = Department.find(params[:department_id])
     @lab = @department.labs.create(labs_params)
     redirect_to department_path(@department)
+    flash[:success] = 'Laboratory Created.'
   end
 
   def edit; end
@@ -27,8 +28,10 @@ class LabsController < ApplicationController
   def update
     if @lab.update(labs_params)
       redirect_to show_lab_path(@lab)
+      flash[:notice] = 'Laboratory Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:error] = 'Failed to Update Laboratory.'
     end
   end
 
@@ -38,6 +41,7 @@ class LabsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Laboratory Deleted.'
   end
 
   private

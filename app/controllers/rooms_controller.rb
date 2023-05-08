@@ -19,8 +19,10 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     if @room.save
       redirect_to rooms_path
+      flash[:success] = 'Room Created.'
     else
       render 'new'
+      flash[:error] = 'Failed to Delete Room.'
     end
   end
 
@@ -29,8 +31,10 @@ class RoomsController < ApplicationController
   def update
     if @room.update(room_params)
       redirect_to rooms_path
+      flash[:notice] = 'Room Created.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:error] = 'Failed to Update Room.'
     end
   end
 
@@ -40,6 +44,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Room Deleted.'
   end
 
   private

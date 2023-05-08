@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
     @lab = Lab.find(params[:lab_id])
     @item = @lab.items.create(item_params)
     redirect_to assign_path(@lab)
+    flash[:notice] = 'Item Assigned.'
   end
 
   def destroy
@@ -28,6 +29,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:error] = 'Item Deleted..'
   end
 
   private

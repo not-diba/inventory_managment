@@ -20,6 +20,7 @@ class ComponentsController < ApplicationController
     @lab = Lab.find(params[:lab_id])
     @component = @lab.components.create(component_params)
     redirect_to lab_path(@lab)
+    flash[:success] = 'Component Created.'
   end
 
   def edit; end
@@ -27,8 +28,10 @@ class ComponentsController < ApplicationController
   def update
     if @component.update(component_params)
       redirect_to @component
+      flash[:notice] = 'Component Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:error] = 'Failed to Update Component.'
     end
   end
 
@@ -38,6 +41,7 @@ class ComponentsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Component Deleted.'
   end
 
   private

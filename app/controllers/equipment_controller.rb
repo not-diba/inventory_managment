@@ -20,6 +20,7 @@ class EquipmentController < ApplicationController
     @lab = Lab.find(params[:lab_id])
     @equipment = @lab.equipment.create(equipment_params)
     redirect_to lab_path(@lab)
+    flash[:success] = 'Equipment Created.'
   end
 
   def edit; end
@@ -27,8 +28,10 @@ class EquipmentController < ApplicationController
   def update
     if @equipment.update(equipment_params)
       redirect_to @equipment
+      flash[:notice] = 'Equipment Updated.'
     else
       render action: 'edit', status: :unprocessable_entity
+      flash[:error] = 'Failed to Update Equipment.'
     end
   end
 
@@ -38,6 +41,7 @@ class EquipmentController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
+    flash[:notice] = 'Equipment Deleted..'
   end
 
   private

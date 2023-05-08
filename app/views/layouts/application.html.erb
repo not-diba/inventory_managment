@@ -20,6 +20,7 @@
   </head>
 
   <% unless current_administrator %>
+    <%= render partial: 'shared/messages' %>
     <%= yield %>
   <% end %>
 
@@ -45,7 +46,8 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
+        <%= render partial: 'shared/messages' %>
+          <div class="container">
             <%= yield %>
           </div>
         </div>

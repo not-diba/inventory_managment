@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   delegate :allow?, to: :current_permission
   helper_method :allow?
+  add_flash_types :info, :error, :success
 
   private
 
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_administrator
 
   def authenticate
-    redirect_to login_url, alert: 'Not authenticated' if current_administrator.nil?
+    redirect_to login_url, error: 'Logged Out.' if current_administrator.nil?
   end
 
   def current_permission
@@ -27,6 +28,6 @@ class ApplicationController < ActionController::Base
     return if current_permission.allow?(params[:controller], params[:action], current_resource)
 
     redirect_to root_path
-    puts('Not Authorized')
+    flash[:error] = 'Not Authorized. Contact Administrator'
   end
 end
