@@ -6,4 +6,7 @@ class Lab < ApplicationRecord
   has_many :components
   has_many :rooms
   has_many :items
+
+  validates :lab_name, presence: true
+  validates :administrator_id, presence: true
 end
