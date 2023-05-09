@@ -16,7 +16,7 @@
             </tr>
              <tr>
                 <th scope="row">Department</th>
-                <td><%= Department.find(@administrator.department_id).department_name %></td>
+                <td><%= Department.find(@administrator.department_id).department_name if @administrator.department_id %></td>
             </tr>
             <tr>
                 <th scope="row">Role</th>

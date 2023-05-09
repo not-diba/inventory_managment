@@ -9,31 +9,35 @@
       </p>
       <br>
       <div class="container">
-  <div class="row justify-content-between">
-    <div class="col">
-      <%= link_to "Add Inventory" , lab, class: 'btn btn-info btn-sm rounded-pill' %>
-    </div>
-    <div class="col">
-      <%= link_to "Assign Inventory" , assign_path(lab), class: 'btn btn-info btn-sm rounded-pill' %>
-    </div>
-  </div>
-  <hr>
-  <div class="row justify-content-between">
-    <div class="col">
-      <%= link_to '<i class="fa fa-eye"></i> View' .html_safe, show_lab_path(lab),class: 'text-info' %>
-    </div>
-    <div class="col">
-      <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe, edit_lab_path(lab),
-              class: 'text-warning' %>
-    </div>
-    <% if current_administrator.role_id == 3 %>
-      <div class="col">
-        <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe, lab_path(lab), data: {
-                  turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %>
+        <div class="row justify-content-between">
+          <div class="col">
+            <%= link_to "Add Inventory" , lab, class: 'btn btn-info btn-sm rounded-pill' %>
+          </div>
+          <div class="col">
+            <%= link_to "Assign Inventory" , assign_path(lab), class: 'btn btn-info btn-sm rounded-pill' %>
+          </div>
+        </div>
+        <hr>
+        <div class="row justify-content-between">
+          <% if current_administrator.role_id==3 %>
+            <div class="col">
+              <%= link_to '<i class="fa fa-eye"></i> View' .html_safe, show_lab_path(lab),class: 'text-info' %>
+            </div>
+            <div class="col">
+              <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe, edit_lab_path(lab),
+                class: 'text-warning' %>
+            </div>
+            <div class="col">
+              <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe, lab_path(lab), data: {
+                turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'text-danger' %>
+            </div>
+            <% else %>
+              <%= link_to '<i class="fa fa-eye"></i> View' .html_safe, show_lab_path(lab),class: 'text-info float-left pl-3' %>
+                <%= link_to '<i class="fa fa-pencil-square-o pull-right "></i> Edit' .html_safe, edit_lab_path(lab),
+                  class: 'text-warning float-right pr-3' %>
+            <% end %>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>      
     </div>
   </div>
 </div>

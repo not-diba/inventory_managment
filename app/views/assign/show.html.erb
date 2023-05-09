@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-    <div>
+  <div class='table-responsive'>
     <% if @lab.items.length==0 %>
           <p>No Items Present</p>
           <% else %>
@@ -34,7 +34,7 @@
               <%= render @lab.items %>
             </table>
             <% end %>
-    </div>
+  </div>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">

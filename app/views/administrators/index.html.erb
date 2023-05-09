@@ -13,7 +13,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-
+  <div class='table-responsive'>
     <% if @administrators.length==0 %>
       <p>No Administrators Present</p>
       <% else %>
@@ -58,7 +58,7 @@
                   <%= Role.find(administrator.role_id).role_name %>
                 </td>
                 <td>
-                  <%= Department.find(administrator.department_id).department_name %>
+                  <%= Department.find(administrator.department_id).department_name if administrator.department_id %>
                 </td>
                 <td>
                   <%= administrator.created_at.strftime("%Y-%m-%d") %>
@@ -76,7 +76,7 @@
           </tbody>
         </table>
         <% end %>
-
+    </div>
           <script>
             function myFunction() {
               var input, filter, table, tr, td, i, txtValue;

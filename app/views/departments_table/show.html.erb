@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <th scope="row">Administartor Name</th>
-                <td><%= Administrator.find(@department.administrator_id).name %></td>
+                <td><%=  Administrator.find(@department.administrator_id).name if @department.administrator_id %></td>
             </tr>
             <tr>
                 <th scope="row">Location</th>

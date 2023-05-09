@@ -39,12 +39,16 @@ class DepartmentsController < ApplicationController
   end
 
   def destroy
-    @department.destroy
+    if current_administrator.department_id == @department.id
+        flash[:error] = 'Cannot Delete Department with active administrator.'      
+    else
+      @department.destroy
 
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
     flash[:notice] = 'Department Deleted.'
+    end
   end
 
   private

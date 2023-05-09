@@ -21,7 +21,7 @@ class ComponentsController < ApplicationController
     @component = @lab.components.new(component_params)
     if @component.save
       redirect_to lab_path(@lab)
-      flash[:success] = 'Component Created.'
+      flash[:notice] = 'Component Created.'
     else
       redirect_to lab_path(@lab)
       flash[:error] = @component.errors.full_messages

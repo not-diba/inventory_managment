@@ -12,11 +12,11 @@
             </tr>
             <tr>
                 <th scope="row">Department Name</th>
-                <td><%= Department.find(@lab.department_id).department_name %></td>
+                <td><%= Department.find(@lab.department_id).department_name if @lab.department_id  %></td>
             </tr>
             <tr>
                 <th scope="row">Administrator Name</th>
-                <td><%= Administrator.find(@lab.administrator_id).name %></td>
+                <td><%= Administrator.find(@lab.administrator_id).name if @lab.administrator_id  %></td>
             </tr>
             <tr>
                 <th scope="row">Equipment Count</th>

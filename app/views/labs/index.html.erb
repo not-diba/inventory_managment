@@ -11,6 +11,7 @@
   </div>
   <div class="x_content">
 
+  <div class='table-responsive'>
     <% if @labs.length==0 %>
       <p>No Laboratories Present</p>
       <% else %>
@@ -53,10 +54,10 @@
                       <%= lab.lab_name %>
                     </td>
                     <td>
-                      <%= Department.find(lab.department_id).department_name %>
+                      <%= Department.find(lab.department_id).department_name if lab.department_id  %>
                     </td>
                     <td>
-                      <%= Administrator.find(lab.administrator_id).name %>
+                      <%= Administrator.find(lab.administrator_id).name if lab.administrator_id  %>
                     </td>
                     <td>
                       <%= lab.created_at.strftime("%Y-%m-%d") %>
@@ -83,6 +84,7 @@
           </tbody>
         </table>
         <% end %>
+      </div>
 
           <script>
             function myFunction() {

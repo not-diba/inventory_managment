@@ -52,17 +52,14 @@
                   </p>
                   <% if department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
                       <%= link_to "Open" , department, class: 'btn btn-info' %>
-                    <% elsif current_administrator.role_id == 3 %>
                       <ul class="nav navbar-right panel_toolbox pt-3" style="font-size:13px;">
+                        <%= link_to '<i class="fa fa-eye"></i> Details'.html_safe, departments_table_path(department),class: 'mr-3 text-primary' %>|
                         <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                          edit_department_path(department), class: 'mr-3 text-warning' %>|
-                          <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                            department_path(department), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                            class: 'ml-3 text-danger' %>
-                    </ul>
-                    <% else %>
-                        <h6>Administrator:</h6> 
-                        <div class='text-primary'><%= Administrator.find(department.administrator_id).name %></div>
+                          edit_department_path(department), class: 'ml-3 text-warning' %>
+                      </ul>
+                  <% else %>
+                      <h6>Administrator:</h6> 
+                      <div class='text-primary'><%= Administrator.find(department.administrator_id).name if department.administrator_id %></div>
                     <% end %>
                 </div>
               </div>

@@ -23,7 +23,7 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="equipment" role="tabpanel" aria-labelledby="equipment-tab">
-
+      <div class='table-responsive'>
         <% if @lab.equipment.length==0 %>
           <p>No Equipment Present</p>
           <% else %>
@@ -46,6 +46,7 @@
               <%= render @lab.equipment %>
             </table>
             <% end %>
+      </div>
 
               <hr />
               <h2 class='pl-2'> Add a Equipment </h2>
@@ -54,7 +55,7 @@
       </div>
       <div class="tab-pane fade" id="components" role="tabpanel" aria-labelledby="components-tab">
 
-
+      <div class='table-responsive'>
         <% if @lab.components.length==0 %>
           <p>No Components Present</p>
           <% else %>
@@ -76,7 +77,7 @@
               <%= render @lab.components %>
             </table>
             <% end %>
-
+      </div>
               <hr />
               <h2 class='pl-2'> Add a Component </h2>
               <%= render 'components/form' %>

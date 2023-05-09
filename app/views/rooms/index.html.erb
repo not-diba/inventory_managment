@@ -12,6 +12,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
+  <div class='table-responsive'>
     <% if @rooms.length==0 %>
       <p>No Rooms Present</p>
       <% else %>
@@ -51,7 +52,7 @@
                   <%= room.room_name %>
                 </td>
                 <td>
-                  <%= Department.find(room.department_id).department_name %>
+                  <%= Department.find(room.department_id).department_name if room.department_id  %>
                 </td>
                 <td>
                   <%= Equipment.where(room_id: room.id).all.count %>

@@ -54,7 +54,7 @@ class AdministratorsController < ApplicationController
     respond_to do |format|
       format.js { render inline: 'location.reload();' }
     end
-    flash[:error] = 'Failed to delete Administrator.'
+    flash[:error] = 'Cannot delete Active Administrator.'
   end
 
   private
