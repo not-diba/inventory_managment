@@ -26,7 +26,7 @@
     </div>
     <div class="col-auto pt-2">
       <%= f.label :room_id, "Room" %>
-      <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
+      <%= f.collection_select :room_id, Room.where(department_id: @lab.department.id),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
     </div>
   </div>
   <div class="float-right pt-3">

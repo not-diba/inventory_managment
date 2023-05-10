@@ -58,7 +58,7 @@
                   <%= Role.find(administrator.role_id).role_name %>
                 </td>
                 <td>
-                  <%= Department.find(administrator.department_id).department_name if administrator.department_id %>
+                  <%= Department.find(administrator.department_id).department_name  %>
                 </td>
                 <td>
                   <%= administrator.created_at.strftime("%Y-%m-%d") %>

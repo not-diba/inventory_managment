@@ -16,7 +16,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Administrator Name</span>
             </div>
-              <%= f.collection_select :administrator_id, Administrator.order(:name),:id,:name, {
+              <%= f.collection_select :administrator_id, Administrator.where(department_id: @department.id),:id,:name, {
                 include_blank: "Select Administrator" }, { class: "form-control rounded" } %>
           </div>
         </div>

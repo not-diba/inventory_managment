@@ -43,7 +43,7 @@
       <div class="item form-group">
         <%= f.label :room_id, "Room" , class: 'col-form-label col-md-3 col-sm-3 label-align' %>
           <div class="col-md-6 col-sm-6 ">
-            <%= f.collection_select :room_id, Room.order(:room_name),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
+            <%= f.collection_select :room_id, Room.where(department_id: @equipment.lab.department.id),:id,:room_name, { include_blank: "Room" }, { class: "form-control rounded" } %>
           </div>
       </div>
       <div class="item form-group">
