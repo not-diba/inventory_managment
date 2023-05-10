@@ -52,7 +52,7 @@
                   <%= room.room_name %>
                 </td>
                 <td>
-                  <%= Department.find(room.department_id).department_name if room.department_id  %>
+                  <%= Department.find(room.department_id).department_name %>
                 </td>
                 <td>
                   <%= Equipment.where(room_id: room.id).all.count %>
