@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class AdministratorsController < ApplicationController
-  before_action :authenticate
-  before_action :authorize
+  before_action :authenticate #login process
+  before_action :authorize # permissions
   before_action :find_administrator, only: %i[edit show update destroy]
 
   def index

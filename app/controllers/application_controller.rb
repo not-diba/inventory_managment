@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
     return if current_permission.allow?(params[:controller], params[:action], current_resource)
 
     redirect_to root_path
-    flash[:error] = 'Not Authorized. Contact Administrator'
+    flash[:error] = 'Not Authorized. Contact Support.'
   end
 end
