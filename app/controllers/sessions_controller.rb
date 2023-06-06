@@ -13,8 +13,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
       flash[:success] = 'Welcome, ' + administrator.name
     else
-      render 'new'
-      flash[:error] = 'Email or password is invalid'
+      render js: "alert('Invalid Password or Email.')"
     end
   end
 

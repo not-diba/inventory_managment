@@ -28,7 +28,7 @@ class UnitsController < ApplicationController
 
   def update
     if @unit.update(unit_params)
-      redirect_to unit_params
+      redirect_to units_path
       flash[:notice] = 'Unit Updated.'
     else
       flash.now[:error] = @unit.errors.full_messages
@@ -52,7 +52,7 @@ class UnitsController < ApplicationController
   end
 
   def unit_params
-    params.require(:unit).permit(:unit_name)
+    params.require(:unit).permit(:unit_name, :description)
   end
 
   def current_resource

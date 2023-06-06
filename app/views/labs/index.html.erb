@@ -19,7 +19,6 @@
           <caption>List of all Laboratories</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 <%= link_to 'Laboratory <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'lab_name' %>
               </th>
@@ -47,9 +46,6 @@
             <% @labs.each do |lab| %>
                 <% if lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
                   <tr>
-                    <th scope="row">
-                      <%= lab.id %>
-                    </th>
                     <td>
                       <%= lab.lab_name %>
                     </td>
@@ -69,9 +65,7 @@
                       <%= lab.components.count %>
                     </td>
                     <td class="text-center">
-                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 text-info' %>|
-                      <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                        edit_lab_path(lab), class: 'mr-3 ml-3 text-warning' %>
+                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, show_lab_path(lab),class: 'mr-3 text-info' %>
                       <% if current_administrator.role_id == 3 %>
                         |<%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
                           lab_path(lab), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },

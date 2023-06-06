@@ -1,25 +1,21 @@
 <!-- top tiles -->
 <div class="row">
   <div class="tile_count col-auto">
-    <div class="col-md-2 col-sm-4  tile_stats_count">
-      <span class="count_top"><i class="fa fa-building-o"></i> Total Number Departments</span>
+    <div class="col-md-3 col-md-3  tile_stats_count" style="overflow: visible;">
+      <span class="count_top"><i class="fa fa-building-o"></i> Total  Departments</span>
       <div class="count"><%= @departments.count %></div>
     </div>
-    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <div class="col-md-2 col-md-3  tile_stats_count" style="overflow: visible;">
       <span class="count_top"><i class="fa fa-flask"></i> Total Number Labs </span>
       <div class="count"><%= Lab.count %></div>
     </div>
-    <div class="col-md-2 col-sm-4  tile_stats_count">
+    <div class="col-md-2 col-md-3  tile_stats_count" style="overflow: visible;">
       <span class="count_top"><i class="fa fa-home"></i> Total Number Rooms </span>
       <div class="count"><%= Room.count %></div>
     </div>
-    <div class="col-md-2 col-sm-4  tile_stats_count">
-      <span class="count_top"><i class="fa fa-cube"></i> Total Number Equipment</span>
+    <div class="col-md-2 col-md-3  tile_stats_count" style="overflow: visible;">
+      <span class="count_top"><i class="fa fa-cubes"></i> Total Number Equipment</span>
       <div class="count green"><%= Equipment.count %></div>
-    </div>
-    <div class="col-md-2 col-sm-4  tile_stats_count">
-      <span class="count_top"><i class="fa fa-cubes"></i> Total Number Components</span>
-      <div class="count green"><%= Component.count %></div>
     </div>
   </div>
 </div>

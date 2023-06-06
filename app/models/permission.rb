@@ -12,9 +12,9 @@ class Permission
     allow :rooms, %i[index new create]
     allow :units, %i[index new create edit update show destroy]
 
-    if administrator && administrator.role_id == 3 # admin
+    if administrator && administrator.role_id == 3 # super administrator 
       allow_all
-    elsif administrator && administrator.role_id == 4 # technician
+    elsif administrator && administrator.role_id == 4 # technologist
 
       allow :departments, %i[show new create edit update] do |department|
         department.id.to_s == administrator.department_id.to_s
