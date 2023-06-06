@@ -47,7 +47,7 @@
           </thead>
           <tbody>
             <% @equipment.each do |equipment| %>
-              <% if equipment.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+              <% if equipment.lab.administrator_id.to_s == current_administrator.id.to_s || current_administrator.role_id == 3 %>
                   <tr>
                     <td>
                       <%= equipment.equipment_name %>

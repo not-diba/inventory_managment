@@ -60,12 +60,14 @@
                   <%= room.created_at.strftime("%Y-%m-%d") %>
                 </td>
                 <td class="text-center">
-                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, room_path(room),class: 'mr-3 text-info' %>|
-                      <%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
-                        edit_room_path(room), class: 'mr-3 ml-3 text-warning' %>|
-                        <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
-                          room_path(room), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                          class: 'ml-3 text-danger' %>
+                      <%= link_to '<i class="fa fa-eye"></i> View'.html_safe, room_path(room),class: 'mr-3 text-info' %>
+                      <% if current_administrator.role_id == 3 %>
+                        |<%= link_to '<i class="fa fa-pencil-square-o pull-right"></i> Edit' .html_safe,
+                          edit_room_path(room), class: 'mr-3 ml-3 text-warning' %>|
+                          <%= link_to '<i class="fa fa-trash-o pull-right"></i> Delete' .html_safe,
+                            room_path(room), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                            class: 'ml-3 text-danger' %>
+                      <% end %>
                     </td>
               </tr>
               <% end %>

@@ -44,7 +44,7 @@
           </thead>
           <tbody>
             <% @components.each do |component| %>
-              <% if component.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+              <% if component.lab.administrator_id.to_s == current_administrator.id.to_s || current_administrator.role_id == 3 %>
                   <tr>
                     <td>
                       <%= component.component_name %>

@@ -50,7 +50,7 @@
           </thead>
           <tbody>
             <% @items.each do |item| %>
-            <% if item.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
+            <% if item.lab.administrator_id.to_s == current_administrator.id.to_s || current_administrator.role_id == 3 %>
                   <tr>
                     <td>
                       <%= item.item_name %>
