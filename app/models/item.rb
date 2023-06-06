@@ -6,5 +6,5 @@ class Item < ApplicationRecord
   validates :room_id, presence: true
   validates :assigned_to, presence: true
   validates :lab_id, presence: true
-  validates :unit, presence: true
+  # validates :unit, presence: true
 end

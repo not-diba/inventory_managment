@@ -13,7 +13,6 @@
           <caption>List of all Components</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 <%= link_to 'Components <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'component_name' %>
               </th>
@@ -47,9 +46,6 @@
             <% @components.each do |component| %>
               <% if component.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
                   <tr>
-                    <th scope="row">
-                      <%= component.id %>
-                    </th>
                     <td>
                       <%= component.component_name %>
                     </td>

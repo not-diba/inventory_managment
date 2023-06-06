@@ -17,7 +17,6 @@
           <caption>List of all Roles</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 Role Name
               </th>
@@ -29,9 +28,6 @@
           <tbody>
             <% @roles.each do |role| %>
               <tr>
-                <th scope="row">
-                  <%= role.id %>
-                </th>
                 <td>
                   <%= role.role_name %>
                 </td>

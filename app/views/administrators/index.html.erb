@@ -21,7 +21,6 @@
           <caption>List of all Administrators</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 <%= link_to 'Name <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'name' %>
               </th>
@@ -45,9 +44,6 @@
           <tbody>
             <% @administrators.each do |administrator| %>
               <tr>
-                <th scope="row">
-                  <%= administrator.id %>
-                </th>
                 <td>
                   <%= administrator.name %>
                 </td>

@@ -20,7 +20,6 @@
           <caption>List of all Rooms</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 Room Name
               </th>
@@ -45,9 +44,6 @@
             <% @rooms.each do |room| %>
             <% if room.department_id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
               <tr>
-                <th scope="row">
-                  <%= room.id %>
-                </th>
                 <td>
                   <%= room.room_name %>
                 </td>

@@ -19,9 +19,11 @@
           <caption>List of all Units</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 Unit Name
+              </th>
+              <th scope="col">
+                Unit Description
               </th>
               <th scope="col">
                 Created At
@@ -34,11 +36,11 @@
           <tbody>
             <% @units.each do |unit| %>
               <tr>
-                <th scope="row">
-                  <%= unit.id %>
-                </th>
                 <td>
                   <%= unit.unit_name %>
+                </td>
+                <td>
+                  <%= unit.description %>
                 </td>
                 <td>
                   <%= unit.created_at.strftime("%Y-%m-%d") %>

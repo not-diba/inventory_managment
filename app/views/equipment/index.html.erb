@@ -13,7 +13,6 @@
           <caption>List of all Equipment</caption>
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">
                 <%= link_to 'Equipment <i class="fa fa-caret-down" aria-hidden="true"></i>'.html_safe , :sort=> 'equipment_name' %>
               </th>
@@ -50,9 +49,6 @@
             <% @equipment.each do |equipment| %>
               <% if equipment.lab.department.id.to_s == current_administrator.department_id.to_s || current_administrator.role_id == 3 %>
                   <tr>
-                    <th scope="row">
-                      <%= equipment.id %>
-                    </th>
                     <td>
                       <%= equipment.equipment_name %>
                     </td>
